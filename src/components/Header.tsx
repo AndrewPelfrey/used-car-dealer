@@ -7,7 +7,7 @@ const Header: React.FC = () => {
     <header className="header">
       {/* Left Side: Clickable Logo */}
       <NavLink to="/about-us" className="logo-container">
-        <img src="/logo.png" alt="Company Logo" className="logo" />
+        <img src="/images/logo.png" alt="Company Logo" className="logo" />
       </NavLink>
 
       {/* Center: Clickable Company Name */}
