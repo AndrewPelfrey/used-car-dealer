@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
         <NavLink to="/terms" className="footer-link">
           Terms & Conditions
         </NavLink>
-        <NavLink to="/Employee-login" className="footer-link">
+        <NavLink to="/employee-login" className="footer-link">
           Employee Log In
         </NavLink>
       </div>
