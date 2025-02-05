@@ -5,13 +5,13 @@ import "../styles/Nav.css";
 const NavBar = () => {
   return (
     <nav className="navbar">
-      <NavLink to="/" className="nav-link" activeClassName="active-link">
+      <NavLink to="/" className="nav-link">
         Home
       </NavLink>
-      <NavLink to="/car-search" className="nav-link" activeClassName="active-link">
+      <NavLink to="/car-search" className="nav-link">
         Car Search
       </NavLink>
-      <NavLink to="/about-us" className="nav-link" activeClassName="active-link">
+      <NavLink to="/about-us" className="nav-link">
         About Us
       </NavLink>
     </nav>
