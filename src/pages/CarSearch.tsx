@@ -10,13 +10,21 @@ const CarSearch: React.FC = () => {
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const model = queryParams.get("model"); // Extracts "model" from "/car-search?model=ford"
+    const year = queryParams.get("year");
+    const price = queryParams.get("price");
+    const color = queryParams.get("color");
 
-    if (model) {
-      fetch(`/api/cars?model=${model}`)
-        .then((res) => res.json())
-        .then((data) => setCars(JSON.stringify(data))) // Store data as a string
-        .catch((err) => console.error("Error fetching cars:", err));
-    }
+    const queryString = new URLSearchParams({
+      ...(model && { model }),
+      ...(year && { year }),
+      ...(price && { price }),
+      ...(color && { color }),
+    }).toString();
+
+    fetch(`/api/car-search?${queryString}`) // Send only available parameters
+      .then((res) => res.json())
+      .then((data) => setCars(JSON.stringify(data)))
+      .catch((err) => console.error("Error fetching cars:", err));
   }, [location.search]); // Re-runs if query parameters change
 
   return (
