@@ -3,6 +3,7 @@ import Nav from './components/Nav.tsx';
 import Header from './components/Header.tsx';
 import Footer from './components/Footer.tsx';
 
+
 function App() {
   return (
     <div>
@@ -10,6 +11,7 @@ function App() {
       <Nav /> {/* Navbar stays on all pages */}
       <main>
         <Outlet /> {/* This will render the correct page based on the route */}
+        
       </main>
       <Footer />
     </div>
