@@ -1,6 +1,6 @@
-import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+// import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 
-interface FeaturesAttributes {
-    id: number;
-    name: string;
-}
+// interface FeaturesAttributes {
+//     id: number;
+//     name: string;
+// }

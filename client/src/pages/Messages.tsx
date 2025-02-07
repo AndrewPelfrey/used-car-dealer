@@ -17,7 +17,7 @@ const Messages: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/messages")
+    fetch("http://localhost:3001/api/messages")
       .then((response) => response.json())
       .then((data) => setMessages(data))
       .catch((error) => console.error("Error fetching messages:", error));
@@ -28,7 +28,7 @@ const Messages: React.FC = () => {
     if (!confirmDelete) return;
 
     try {
-      await fetch(`http://localhost:5000/api/messages/${id}`, {
+      await fetch(`http://localhost:3001/api/messages/${id}`, {
         method: "DELETE",
       });
       setMessages(messages.filter((msg) => msg.id !== id));

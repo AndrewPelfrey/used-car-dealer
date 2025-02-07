@@ -7,12 +7,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm run client:build && npm run server",
     "start:dev": "concurrently \"npm run server:dev\" \"wait-on tcp:4000 && npm run client:dev\"",
-    "server": "cd server && npm start",
+    "server": "npm start --prefix server",
     "server:dev": "cd server && npm run dev",
     "install": "cd server && npm i && cd ../client && npm i",
+    "client": "npm start --prefix client",
     "client:build": "cd client && npm run build",
     "client:dev": "cd client && npm run dev",
     "build": "cd server && npm run build",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
     "seed": "cd server && npm run seed",
     "render-build": "npm install && npm run client:build && npm run build",
     "render-postinstall": "cd client && npm install"
@@ -30,6 +32,7 @@
   },
   "dependencies": {
     "dotenv": "^16.4.7",
+    "concurrently": "^7.0.0",
     "express": "^4.21.2",
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
