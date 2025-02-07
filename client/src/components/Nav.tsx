@@ -1,21 +1,31 @@
-//import React from "react";
 import { NavLink } from "react-router-dom";
-import "../styles/Nav.css";
 
-const NavBar = () => {
+const Nav = () => {
   return (
-    <nav className="navbar">
-      <NavLink to="/" className="nav-link" activeClassName="active-link">
+    <nav>
+      <NavLink 
+        to="/" 
+        className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}
+      >
         Home
       </NavLink>
-      <NavLink to="/car-search" className="nav-link" activeClassName="active-link">
+
+      <NavLink 
+        to="/car-search" 
+        className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}
+      >
         Car Search
       </NavLink>
-      <NavLink to="/about-us" className="nav-link" activeClassName="active-link">
+
+      <NavLink 
+        to="/about-us" 
+        className={({ isActive }) => isActive ? "nav-link active-link" : "nav-link"}
+      >
         About Us
       </NavLink>
     </nav>
   );
 };
 
-export default NavBar;
+export default Nav;
+
