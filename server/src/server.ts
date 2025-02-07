@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
+// Connect contact routes from the ContactModel.ts
+// Connect Sequelize for the database
 
 import express from 'express';
 import path from 'path';
