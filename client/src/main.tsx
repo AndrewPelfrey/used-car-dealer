@@ -10,7 +10,7 @@ import CarSearch from './pages/CarSearch.tsx';
 import Terms from './pages/Terms.tsx';
 import EmployeeLogin from './pages/EmployeeLogin.tsx';
 import Contact from './pages/ContactForm.tsx';
-import Messages from './pages/messages.tsx';
+import Messages from './pages/Messages.tsx';
 
 const router = createBrowserRouter([
   {

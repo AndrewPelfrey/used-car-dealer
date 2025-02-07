@@ -1,2 +1,2 @@
-import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+// import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
 
