@@ -4,6 +4,7 @@ dotenv.config();
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import routes from './routes/index.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,6 +19,7 @@ const clientBuildPath = path.resolve(__dirname, '../../client/dist');
 app.use(express.static(clientBuildPath));
 
 app.use(express.json());
+app.use(routes);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
