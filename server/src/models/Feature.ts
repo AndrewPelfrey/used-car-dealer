@@ -34,4 +34,6 @@ export function initFeatures(sequelize: Sequelize) {
             sequelize, // passing the `sequelize` instance is required
         }
     );
+
+    return Features;
 }

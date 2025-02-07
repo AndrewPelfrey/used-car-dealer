@@ -64,5 +64,7 @@ export function initCarInfo(sequelize: Sequelize) {
             sequelize, // passing the `sequelize` instance is required
         }
     );
+
+    return CarInfo;
 }
 
