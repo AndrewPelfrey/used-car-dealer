@@ -23,6 +23,6 @@
     /* Type definitions */
     "types": ["react", "react-dom", "react-router-dom"]  // Add this line
   },
-  "include": ["src", "server"],
+  "include": ["client/src", "server"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
