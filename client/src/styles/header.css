@@ -1,0 +1,67 @@
+/* Header container */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333; /* Dark gray */
+    color: white;
+    width: 100%;
+  }
+  
+  /* Clickable Logo (Left) */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Allows resizing */
+    min-width: 150px;
+  }
+  
+  .logo {
+    width: 100%; /* Makes it responsive */
+    max-width: 600px; /* Max size */
+    height: auto; /* Keeps aspect ratio */
+    object-fit: contain;
+  }
+  
+  /* Clickable Company Name (Centered) */
+  .company-name {
+    flex: 2; /* Keeps it centered */
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    white-space: nowrap;
+  }
+  
+  .company-name:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contact Info (Right) */
+  .contact-info {
+    flex: 1; /* Ensures spacing */
+    text-align: right;
+    font-size: 1.2rem;
+    min-width: 150px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .logo-container, .contact-info {
+      flex: none;
+      width: 100%;
+      text-align: center;
+    }
+  
+    .company-name {
+      order: -1; /* Ensures company name stays in the center */
+      margin: 10px 0;
+    }
+  }
+  
