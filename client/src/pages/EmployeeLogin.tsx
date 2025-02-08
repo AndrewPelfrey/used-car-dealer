@@ -1,56 +1,67 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
-const EmployeeLogin = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginMessage, setLoginMessage] = useState('');
+  const navigate = useNavigate(); 
 
-    const handleLogin = async (e: React.FormEvent) => {
-      e.preventDefault();
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post('http://localhost:3001/auth/login', {
+        username,
+        password
+      });
 
-      // Sends POST request
-      try {
-        const response = await axios.post('http://localhost:3001/auth/login', {
-          username,
-          password,
-        });
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('username', username);
 
-// Stores the JWT token on successful login
-        localStorage.setItem('jwt', response.data.token);
-
-        window.location.href = '/';
-      } catch (err) {
-        setError('Invalid login information. Please try again');
+        navigate(`/?username=${username}`);
+      } else {
+        setLoginMessage('Invalid credentials');
       }
-    };
+    } catch (error) {
+      console.error('Login error:', error);
+      setLoginMessage('Login failed');
+    }
+  };
 
-  
-    return (
-      <div className="user-login">
-        <h2>Employee Login</h2>
-        <form onSubmit={handleLogin}>
-          <div>
-            <input type="text"
+  return (
+    <div>
+      <form onSubmit={handleLogin}>
+        <label>
+          Username:
+          <input
+            type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            placeholder="Username"
+            placeholder='username:'
             required
-             />
-          </div>
-          <div>
-            <input type="text"
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
+            placeholder='password:'
             required
-             />
-          </div>
-          {error && <p>{error}</p>}
-          <button type="submit">Login</button>
-        </form>
-      </div>
-    );
-  }
-  
-  export default EmployeeLogin;
+          />
+        </label>
+        <br />
+        <button type="submit">Login</button>
+      </form>
+
+      <div>{loginMessage}</div>
+    </div>
+  );
+};
+
+export default LoginForm;

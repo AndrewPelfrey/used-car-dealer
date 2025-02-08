@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+// import bcrypt from 'bcrypt';
 import { Sequelize } from 'sequelize';
 import { UserFactory } from '../models/user.js';
 
@@ -17,12 +17,10 @@ interface Employee {
     password: string;
 }
 
-// Function to hash passwords and insert employees
 export async function addEmployees() {
     try {
         console.log('Syncing database...');
-        await sequelize.sync(); // Do NOT use { force: true } since you manually cleared the table
-
+        await sequelize.sync();
         const employees: Employee[] = [
             { username: 'Duncan', password: 'password' },
             { username: 'Kyle', password: 'password' },
@@ -35,12 +33,10 @@ export async function addEmployees() {
             const existingUser = await User.findOne({ where: { username: employee.username } });
         
             if (!existingUser) {
-                // ✅ Ensure password is hashed before storing it
-                const hashedPassword = await bcrypt.hash(employee.password, 10);
                 
                 await User.create({
                     username: employee.username,
-                    password: hashedPassword, // ✅ Now this is properly defined
+                    password: employee.password, 
                 });
         
                 console.log(`Employee ${employee.username} added with hashed password.`);

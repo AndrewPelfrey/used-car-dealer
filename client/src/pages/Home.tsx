@@ -1,15 +1,35 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 
 import "../styles/home.css";
 
 function Home() {
   const [count, setCount] = useState(0);
 
+  useEffect(() => {
+    const storedUsername = localStorage.getItem('username');
+    if (storedUsername) {
+      const alertDiv = document.createElement('div');
+      alertDiv.textContent = `Welcome, ${storedUsername}!`;
+      alertDiv.style.position = 'fixed';
+      alertDiv.style.top = '10px';
+      alertDiv.style.left = '50%';
+      alertDiv.style.transform = 'translateX(-50%)';
+      alertDiv.style.backgroundColor = '#646cffaa';
+      alertDiv.style.color = 'white';
+      alertDiv.style.padding = '5px 10px';
+      alertDiv.style.borderRadius = '5px';
+      alertDiv.style.zIndex = '1000';
+      alertDiv.style.fontSize = '10px';
+      document.body.appendChild(alertDiv);
+
+      setTimeout(() => {
+        alertDiv.remove();
+      }, 3000);
+    }
+  }, []);
+
   return (
     <>
-      <div>
-      </div>
       <h1>Home Page</h1>
       <div className='card'>
         <button onClick={() => setCount((count) => count + 1)}>
