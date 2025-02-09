@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="contact-form-container">
       <h1>Contact Us</h1>
       <form className="contact-form" onSubmit={handleSubmit}>
         <label className="block">
