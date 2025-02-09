@@ -1,73 +1,63 @@
-/* Footer container */
-.footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #333; /* Dark gray */
-    color: white;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-  }
-  
-  /* Footer sections */
-  .footer-left,
-  .footer-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .footer-left {
-    justify-content: flex-start;
-  }
-  
-  .footer-right {
-    justify-content: flex-end;
-  }
-  
-  /* Footer Center (Social Icons) */
-  .footer-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .social-icon {
+.social-icon {
     width: 50px;
     height: 50px;
+    padding-left: 2px;
+    padding-right: 2px;
     object-fit: contain;
+    will-change: filter;
+    transition: filter 300ms;
   }
-  
-  /* Footer Links */
-  .footer-link {
-    text-decoration: none;
-    color: white;
-    font-size: 0.9rem;
+  .social-icon:hover {
+    filter: drop-shadow(0 0 2em #5BACDC);
   }
-  
-  .footer-link:hover {
-    text-decoration: underline;
+  .social-icon.react:hover {
+    filter: drop-shadow(0 0 2em #5BACDC);
   }
+
   
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .footer {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .footer-left,
-    .footer-right {
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-    }
-  
-    .footer-center {
-      margin: 10px 0;
-    }
-  }
-  
+  /* Footer container */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: linear-gradient(to top, #34383B, #161C21);
+  padding: 1rem 2rem;
+  color: #D9D9D9; /* Light grey text color for links */
+  border-top: 4px solid #5BACDC; /* Beveled top edge with light blue */
+}
+
+/* Footer sections */
+.footer-left, .footer-center, .footer-right {
+  display: flex;
+  align-items: center;
+}
+
+/* Footer links */
+.footer-link {
+  text-decoration: none;
+  color: #D9D9D9; /* Default color for links */
+  margin: 0 1rem;
+  font-size: 1rem;
+  transition: color 0.3s ease; /* Smooth color change on hover */
+}
+
+/* Hover effect for links */
+.footer-link:hover {
+  color: #5BACDC; /* Change color to light blue on hover */
+}
+
+/* Social media links */
+.social-link {
+  margin: 0 1rem;
+}
+
+.social-logo {
+  width: 30px; /* Adjust logo size */
+  height: 30px; /* Adjust logo size */
+  transition: opacity 0.3s ease; /* Smooth fade effect on hover */
+}
+
+/* Social media hover effect */
+.social-link:hover .social-logo {
+  opacity: 0.7; /* Slight fade effect on hover */
+}

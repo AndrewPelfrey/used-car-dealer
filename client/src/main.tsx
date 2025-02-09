@@ -10,6 +10,7 @@ import Terms from './pages/Terms.tsx';
 import EmployeeLogin from './pages/EmployeeLogin.tsx';
 import Contact from './pages/ContactForm.tsx';
 import Messages from './pages/Messages.tsx';
+import AboutUs from './pages/AboutUs.tsx';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: 'employee-login', element: <EmployeeLogin />},
       { path: 'contact-form', element: <Contact />},
       { path: 'messages', element: <Messages />},
+      { path: 'about-us', element: <AboutUs />},
     ],
   },
 ]);

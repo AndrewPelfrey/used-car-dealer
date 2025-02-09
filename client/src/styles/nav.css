@@ -1,22 +1,30 @@
-.navbar {
+.nav-container {
+  background-color: #161C21;
+  padding: 0.5rem 2rem;
   display: flex;
-  justify-content: center;
-  background-color: #333;
-  padding: 10px;
+  justify-content: center; /* Center the nav items */
+}
+
+.nav-list {
+  display: flex;
+  gap: 2rem;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
-  margin: 0 15px;
-  text-decoration: none;
+  font-size: 1.2rem;
   color: white;
+  text-decoration: none;
   font-weight: bold;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #f0f0f0;
+  color: #5BACDC;
 }
 
-.active-link {
-  border-bottom: 2px solid white;
+.nav-link.active {
+  color: #5BACDC;
 }

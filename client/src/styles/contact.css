@@ -1,10 +1,18 @@
-.contact-container {
+  .contact-form-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: column;
     padding: 2rem;
+    background-color: #161C21;
+    border-radius: 10px;
+    margin: 2rem;
   }
-  
+
+  .contact-form-container h1 {
+    color: #5BACDC;
+  }
+
   .contact-box {
     width: 66%; /* Takes up 2/3 of the page */
     background-color: #f9f9f9;
@@ -44,7 +52,7 @@
   }
   
   .contact-form button {
-    background-color: #007bff;
+    background-color: #5BACDC;
     color: white;
     padding: 10px;
     border: none;
