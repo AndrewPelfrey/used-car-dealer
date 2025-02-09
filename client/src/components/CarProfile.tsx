@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Car } from "../interfaces/Car";
 
+const API_URL = import.meta.env.VITE_API_BASE_URL; 
+
 const CarProfile: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [car, setCar] = useState<Car | null>(null);
@@ -10,9 +12,9 @@ const CarProfile: React.FC = () => {
   useEffect(() => {
     const fetchCar = async () => {
       try {
-        const response = await fetch(`/api/cars/${id}`); // Adjust URL if necessary
+        const response = await fetch(`${API_URL}/cars/${id}`); 
         if (!response.ok) {
-          throw new Error("Car not found");
+          throw new Error(`Car not found (Status: ${response.status})`);
         }
         const data = await response.json();
         setCar(data);

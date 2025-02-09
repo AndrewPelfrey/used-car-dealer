@@ -12,9 +12,9 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 
 // Middleware
 app.use(cors({
@@ -46,7 +46,7 @@ const cars = [
   { id: 3, make: "Ford", model: "Mustang", year: 2021 },
 ];
 
-// ✅ Search cars by make, model, or year
+// Search cars by make, model, or year
 app.get("/api/cars", (req: Request, res: Response) => {
   const { make, model, year } = req.query;
 
@@ -54,6 +54,7 @@ app.get("/api/cars", (req: Request, res: Response) => {
 
   if (make) {
     filteredCars = filteredCars.filter((car) =>
+
       car.make.toLowerCase().includes((make as string).toLowerCase())
     );
   }
@@ -72,7 +73,7 @@ app.get("/api/cars", (req: Request, res: Response) => {
   return res.json(filteredCars);
 });
 
-// ✅ Get a single car by ID
+// Get a single car by ID
 app.get("/api/cars/:id", (req: Request, res: Response) => {
   const carId = parseInt(req.params.id, 10);
 
@@ -88,12 +89,13 @@ app.get("/api/cars/:id", (req: Request, res: Response) => {
   return res.json(car);
 });
 
-// ✅ Serve React app for any unknown routes (for frontend routing)
+// Serve React app for any unknown routes (for frontend routing)
 app.get("*", (_req, res) => {
   res.sendFile(path.join(clientBuildPath, "index.html"));
 });
 
-// ✅ Start the server
+// Start the server
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+
 
 export default app;
