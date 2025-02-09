@@ -1,14 +1,27 @@
+const API_URL = `${import.meta.env.VITE_API_BASE_URL}/cars`;
 
-const API_URL = "http://localhost:5001/api/cars"; 
-
-
-// Fetch all cars
-export const fetchCars = async (make: string, model: string, year: string) => {
+export const fetchCars = async (make?: string, model?: string, year?: string) => {
   try {
-    const response = await fetch(`${API_URL}/cars?make=${make}&model=${model}&year=${year}`);
+    const queryParams = new URLSearchParams();
+    if (make) queryParams.append("make", make);
+    if (model) queryParams.append("model", model);
+    if (year) queryParams.append("year", year);
+
+    const url = `${API_URL}?${queryParams.toString()}`;
+    console.log("Fetching cars from:", url); // ✅ Debugging log
+
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     if (!response.ok) {
-      throw new Error("Failed to fetch cars");
+      const errorText = await response.text();
+      throw new Error(`Failed to fetch cars: ${response.status} - ${errorText}`);
     }
+
     return await response.json();
   } catch (err) {
     console.error("Error fetching cars:", err);
@@ -16,16 +29,3 @@ export const fetchCars = async (make: string, model: string, year: string) => {
   }
 };
 
-// Fetch a single car by ID
-export const fetchCarById = async (id: number) => {
-  try {
-    const response = await fetch(`${API_URL}/cars/${id}`);
-    if (!response.ok) {
-      throw new Error("Car not found");
-    }
-    return await response.json();
-  } catch (err) {
-    console.error("Error fetching car:", err);
-    throw err;
-  }
-};
