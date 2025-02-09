@@ -34,7 +34,7 @@ export class Car extends Model<CarAttributes, CarCreationAttributes> implements 
     public readonly updatedAt!: Date;
 }
 
-export function initCar(sequelize: Sequelize) {
+export function CarFactory(sequelize: Sequelize) {
     Car.init(
         {
             vin: {

@@ -16,7 +16,7 @@ export class Features extends Model<FeaturesAttributes, FeaturesCreationAttribut
     public readonly updatedAt!: Date;
 }
 
-export function initFeatures(sequelize: Sequelize) {
+export function FeaturesFactory(sequelize: Sequelize) {
     Features.init(
         {
             id: {
