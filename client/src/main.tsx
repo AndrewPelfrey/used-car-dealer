@@ -11,6 +11,9 @@ import EmployeeLogin from './pages/EmployeeLogin.tsx';
 import Contact from './pages/ContactForm.tsx';
 import Messages from './pages/Messages.tsx';
 import AboutUs from './pages/AboutUs.tsx';
+import CrudCars from './pages/CrudCars.tsx';
+import CrudEmployees from './pages/CrudEmployees.tsx';
+import ProtectedRoute from './components/ProtectedRoute.tsx';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,8 @@ const router = createBrowserRouter([
       { path: 'contact-form', element: <Contact />},
       { path: 'messages', element: <Messages />},
       { path: 'about-us', element: <AboutUs />},
+      { path: 'crud-cars', element: ( <ProtectedRoute><CrudCars/></ProtectedRoute>),},
+      { path: 'crud-employees', element: ( <ProtectedRoute requiredRole="manager"><CrudEmployees/></ProtectedRoute>),},
     ],
   },
 ]);
