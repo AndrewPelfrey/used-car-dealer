@@ -1,32 +1,44 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
+import dotenv from "dotenv"; // Load environment variables
+
+dotenv.config(); // Load .env variables
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-// Middleware
-app.use(cors()); 
-app.use(express.json()); 
+// ✅ Middleware
+app.use(cors({ origin: "*" })); // Adjust origin if needed
+app.use(express.json());
 
-// Sample car database (Will replace with a real database)
+// ✅ Log incoming requests (fixes 'res' is declared but never read')
+app.use((req, _res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next(); // Ensure request proceeds
+});
+
+// ✅ Sample car database (Replace with real database in future)
 const cars = [
   { id: 1, make: "Toyota", model: "Camry", year: 2020 },
   { id: 2, make: "Honda", model: "Civic", year: 2019 },
   { id: 3, make: "Ford", model: "Mustang", year: 2021 },
 ];
 
-// ✅ Search cars by make, model, or year**
-
+// ✅ Search cars by make, model, or year
 app.get("/api/cars", (req: Request, res: Response) => {
   const { make, model, year } = req.query;
 
   let filteredCars = cars;
 
   if (make) {
-    filteredCars = filteredCars.filter(car => car.make.toLowerCase().includes((make as string).toLowerCase()));
+    filteredCars = filteredCars.filter(car =>
+      car.make.toLowerCase().includes((make as string).toLowerCase())
+    );
   }
   if (model) {
-    filteredCars = filteredCars.filter(car => car.model.toLowerCase().includes((model as string).toLowerCase()));
+    filteredCars = filteredCars.filter(car =>
+      car.model.toLowerCase().includes((model as string).toLowerCase())
+    );
   }
   if (year) {
     const yearNumber = parseInt(year as string, 10);
@@ -54,7 +66,9 @@ app.get("/api/cars/:id", (req: Request, res: Response) => {
   return res.json(car);
 });
 
-// ✅ Ensure the server is properly started**
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
+// ✅ Ensure the server is properly started
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
+});
 
-export default app; // Ensure Express app is exported properly
+export default app;
