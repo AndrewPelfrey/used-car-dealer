@@ -1,0 +1,9 @@
+.terms-container {
+    background-color: #161C21;
+    border-radius: 10px;
+    padding: 20px;
+    color: #D9D9D9;
+    max-width: 800px;
+    margin: 40px auto;
+    line-height: 1.6;
+}
