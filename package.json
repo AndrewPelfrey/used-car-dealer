@@ -15,7 +15,10 @@
       "build": "cd server && npm run build",
       "seed": "cd server && npm run seed",
       "render-build": "npm install && npm run build",
-      "render-postinstall": "cd client && npm install"
+      "render-postinstall": "cd client && npm install",
+      "view": "concurrently \"npm run clientT\" \"npm run serverT\"",
+      "clientT": "npm start --prefix client",
+      "serverT": "npm start --prefix server"
     },
     "keywords": [],
     "author": "",
