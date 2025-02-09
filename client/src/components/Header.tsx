@@ -19,7 +19,8 @@ const Header: React.FC = () => {
 
       {/* Right Side: Address & Phone */}
       <div className="contact-info">
-        <p className="phone">1234 Car Lot Ave, City, ST 56789</p>
+        <p className="phone">1234 Placeholder St</p>
+        <p className="address">Anytown, USA 56789</p>
         <p className="address">Call: (123) 456-7890</p>
       </div>
     </header>
