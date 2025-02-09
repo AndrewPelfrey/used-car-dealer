@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
           <img src="/images/icons/instagramLogo.png" alt="Instagram" className="social-icon" />
         </a>
         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-          <img src="/facebook.png" alt="Facebook" className="social-icon" />
+          <img src="/images/icons/facebookLogo.png" alt="Facebook" className="social-icon" />
         </a>
       </div>
 
