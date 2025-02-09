@@ -7,18 +7,21 @@ const Header: React.FC = () => {
     <header className="header">
       {/* Left Side: Clickable Logo */}
       <NavLink to="/about-us" className="logo-container">
-        <img src="/images/logo.png" alt="Company Logo" className="logo" />
+        <img src="/images/icons/autoscoutLogo.png" alt="Company Logo" className="logo" />
       </NavLink>
 
       {/* Center: Clickable Company Name */}
-      <NavLink to="/" className="company-name">
-        Used Dealership Name
+      <div className="title-container">
+      <NavLink to="/" className="company-title">
+        AutoScout
       </NavLink>
+      </div>
 
       {/* Right Side: Address & Phone */}
       <div className="contact-info">
-        <p>1234 Car Lot Ave, City, ST 56789</p>
-        <p>Call: (123) 456-7890</p>
+        <p className="phone">1234 Placeholder St</p>
+        <p className="address">Anytown, USA 56789</p>
+        <p className="address">Call: (123) 456-7890</p>
       </div>
     </header>
   );
