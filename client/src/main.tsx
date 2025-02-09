@@ -5,7 +5,7 @@ import './styles/index.css';
 import App from './App.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 import Home from './pages/Home.tsx';
-import CarSearch from './pages/CarSearch.tsx';
+import CarSearch from './components/CarSearch.tsx';
 import Terms from './pages/Terms.tsx';
 import EmployeeLogin from './pages/EmployeeLogin.tsx';
 import Contact from './pages/ContactForm.tsx';
