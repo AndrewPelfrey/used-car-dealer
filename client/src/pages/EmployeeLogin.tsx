@@ -20,6 +20,7 @@ const LoginForm = () => {
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', username);
+        localStorage.setItem('role', response.data.role);
 
         navigate(`/?username=${username}`);
       } else {
@@ -35,7 +36,6 @@ const LoginForm = () => {
     <div>
       <form onSubmit={handleLogin}>
         <label>
-          Username:
           <input
             type="text"
             value={username}
@@ -46,7 +46,6 @@ const LoginForm = () => {
         </label>
         <br />
         <label>
-          Password:
           <input
             type="password"
             value={password}
