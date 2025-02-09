@@ -1,23 +1,67 @@
-import { useState } from "react";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom'; 
 
-function EmployeeLogin() {
-    const [count, setCount] = useState(0);
-  
-    return (
-      <>
-        <div>
-        </div>
-        <h1>Employee Login Page</h1>
-        <div className='card'>
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/pages/EmployeeLogin.jsx</code> and save to test HMR
-          </p>
-        </div>
-      </>
-    );
-  }
-  
-  export default EmployeeLogin;
+const LoginForm = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loginMessage, setLoginMessage] = useState('');
+  const navigate = useNavigate(); 
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    try {
+      const response = await axios.post('http://localhost:3001/auth/login', {
+        username,
+        password
+      });
+
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('username', username);
+
+        navigate(`/?username=${username}`);
+      } else {
+        setLoginMessage('Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setLoginMessage('Login failed');
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleLogin}>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder='username:'
+            required
+          />
+        </label>
+        <br />
+        <label>
+          Password:
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder='password:'
+            required
+          />
+        </label>
+        <br />
+        <button type="submit">Login</button>
+      </form>
+
+      <div>{loginMessage}</div>
+    </div>
+  );
+};
+
+export default LoginForm;
