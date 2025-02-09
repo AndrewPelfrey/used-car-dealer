@@ -5,6 +5,7 @@ interface UserAttributes {
     id: number;
     username: string;
     password: string;
+    role: 'manager' | 'employee';
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
@@ -16,6 +17,7 @@ export class User
     public id!: number;
     public username!: string;
     public password!: string;
+    public role!: 'manager' | 'employee';
 
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
@@ -40,11 +42,17 @@ export class User
             username: {
                 type: DataTypes.STRING,
                 allowNull: false,
+                unique: true,
             },
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
             },
+            role: {
+                type: DataTypes.ENUM('manager', 'employee'),
+                allowNull: false,
+                defaultValue: 'employee',
+            }
         },
         {
             tableName: 'users',

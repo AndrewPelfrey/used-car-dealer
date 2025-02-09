@@ -7,9 +7,11 @@ function Home() {
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
+    const storedRole = localStorage.getItem('role');
+
     if (storedUsername) {
       const alertDiv = document.createElement('div');
-      alertDiv.textContent = `Welcome, ${storedUsername}!`;
+      alertDiv.textContent = `Welcome, ${storedRole} ${storedUsername}!`;
       alertDiv.style.position = 'fixed';
       alertDiv.style.top = '10px';
       alertDiv.style.left = '50%';

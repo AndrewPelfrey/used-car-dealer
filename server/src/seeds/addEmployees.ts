@@ -15,6 +15,7 @@ const User = UserFactory(sequelize);
 interface Employee {
     username: string;
     password: string;
+    role: 'manager' | 'employee';
 }
 
 export async function addEmployees() {
@@ -22,10 +23,10 @@ export async function addEmployees() {
         console.log('Syncing database...');
         await sequelize.sync();
         const employees: Employee[] = [
-            { username: 'Duncan', password: 'password' },
-            { username: 'Kyle', password: 'password' },
-            { username: 'Jeffery', password: 'password' },
-            { username: 'Andrew', password: 'password' },
+            { username: 'Duncan', password: 'password', role: 'manager' },
+            { username: 'Kyle', password: 'password', role: 'manager' },
+            { username: 'Jeffery', password: 'password', role: 'employee' },
+            { username: 'Andrew', password: 'password', role: 'employee' },
         ];
 
         for (const employee of employees) {
@@ -36,7 +37,8 @@ export async function addEmployees() {
                 
                 await User.create({
                     username: employee.username,
-                    password: employee.password, 
+                    password: employee.password,
+                    role: employee.role, 
                 });
         
                 console.log(`Employee ${employee.username} added with hashed password.`);
