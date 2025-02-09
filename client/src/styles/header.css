@@ -1,67 +1,74 @@
-/* Header container */
+/* Main header container */
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #333; /* Dark gray */
-    color: white;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #34383B;
+  background-image: linear-gradient(to bottom, #34383B, #161C21);
+  padding: 0rem 2rem;
+  color: white;
+}
+
+/* Logo container */
+.logo-container {
+  flex-shrink: 0;
+  padding:0;
+  height: 100%;
+  width: auto;
+}
+
+.logo {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  display:block;
+  margin: 0;
+  padding: 0 !important;
+  will-change: filter;
+  transition: filter 300ms;
+}
+  .logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
   }
-  
-  /* Clickable Logo (Left) */
-  .logo-container {
-    display: flex;
-    align-items: center;
-    flex: 1; /* Allows resizing */
-    min-width: 150px;
+  .logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
   }
-  
-  .logo {
-    width: 100%; /* Makes it responsive */
-    max-width: 600px; /* Max size */
-    height: auto; /* Keeps aspect ratio */
-    object-fit: contain;
-  }
-  
-  /* Clickable Company Name (Centered) */
-  .company-name {
-    flex: 2; /* Keeps it centered */
-    font-size: 2rem;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    white-space: nowrap;
-  }
-  
-  .company-name:hover {
-    text-decoration: underline;
-  }
-  
-  /* Contact Info (Right) */
-  .contact-info {
-    flex: 1; /* Ensures spacing */
-    text-align: right;
-    font-size: 1.2rem;
-    min-width: 150px;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .header {
-      flex-direction: column;
-      text-align: center;
-    }
-  
-    .logo-container, .contact-info {
-      flex: none;
-      width: 100%;
-      text-align: center;
-    }
-  
-    .company-name {
-      order: -1; /* Ensures company name stays in the center */
-      margin: 10px 0;
-    }
-  }
-  
+
+/* Company title */
+.title-container {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.company-title {
+  font-size: 4.8rem;
+  font-weight: bold;
+  color: #D3D3D3;
+  color: rgba(91,172,220, 0.8);
+  text-shadow: 3px 4px 6px #def, 0 0 0 #000, 1px 4px 6px #def;
+  font-family: "Calibri", sans-serif;
+}
+
+/* Contact info container */
+.contact-info {
+  text-align: right;
+  font-size: 1.2rem;
+}
+
+.phone, .address {
+  margin: 0;
+}
+
+.phone {
+  color: #5BACDC; 
+}
+
+.address {
+  color: #5BACDC; 
+}
+
+/* Optional: Add hover effect to the phone and address */
+.phone:hover, .address:hover {
+  text-decoration: underline;
+  color: #161C21; /* Deep navy blue on hover */
+}
