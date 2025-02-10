@@ -1,5 +1,4 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
-
 interface CarAttributes {
     vin: number;
     make: string;
@@ -13,9 +12,7 @@ interface CarAttributes {
     price: number;
     image_url: string;
 }
-
 interface CarCreationAttributes extends Optional<CarAttributes, 'vin'> {}
-
 export class Car extends Model<CarAttributes, CarCreationAttributes> implements CarAttributes {
     public vin!: number;
     public make!: string;
@@ -28,17 +25,15 @@ export class Car extends Model<CarAttributes, CarCreationAttributes> implements 
     public description!: string;
     public price!: number;
     public image_url!: string;
-
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
-
-export function initCar(sequelize: Sequelize) {
+export function CarFactory(sequelize: Sequelize) {
     Car.init(
         {
             vin: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 autoIncrement: true,
                 primaryKey: true,
             },
@@ -84,8 +79,9 @@ export function initCar(sequelize: Sequelize) {
             },
         },
         {
-            tableName: 'cars',
+            tableName: 'car',
             sequelize, // passing the `sequelize` instance is required
         }
     );
+    return Car;
 }

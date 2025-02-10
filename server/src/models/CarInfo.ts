@@ -1,5 +1,4 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
-
 interface CarInfoAttributes {
     id: number;
     engine: string;
@@ -9,9 +8,7 @@ interface CarInfoAttributes {
     fuel_eco_city: number;
     fuel_eco_highway: number;
 }
-
 interface CarInfoCreationAttributes extends Optional<CarInfoAttributes, 'id'> {}
-
 export class CarInfo extends Model<CarInfoAttributes, CarInfoCreationAttributes> implements CarInfoAttributes {
     public id!: number;
     public engine!: string;
@@ -20,13 +17,11 @@ export class CarInfo extends Model<CarInfoAttributes, CarInfoCreationAttributes>
     public fuel_type!: string;
     public fuel_eco_city!: number;
     public fuel_eco_highway!: number;
-
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
-
-export function initCarInfo(sequelize: Sequelize) {
+export function CarInfoFactory(sequelize: Sequelize) {
     CarInfo.init(
         {
             id: {
@@ -64,5 +59,5 @@ export function initCarInfo(sequelize: Sequelize) {
             sequelize, // passing the `sequelize` instance is required
         }
     );
+    return CarInfo;
 }
-
