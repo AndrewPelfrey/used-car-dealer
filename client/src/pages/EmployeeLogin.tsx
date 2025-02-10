@@ -44,6 +44,7 @@ const LoginForm = () => {
       console.error('Login error:', error);
       setLoginMessage('Login failed');
     }
+  }
     
 
   const handleLogout = () => {
@@ -91,7 +92,6 @@ const LoginForm = () => {
       <div>{loginMessage}</div>
     </div>
   );
-}
 };
 
 export default LoginForm;
