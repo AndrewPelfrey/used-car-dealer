@@ -38,9 +38,6 @@ const syncDatabase = async () => {
   }
 };
 
-syncDatabase(); 
-
-
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
 app.use(express.static(clientBuildPath));
@@ -103,5 +100,6 @@ app.get("*", (_req, res) => {
 // Start the server
 app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
+syncDatabase(); 
 
 export default app;
