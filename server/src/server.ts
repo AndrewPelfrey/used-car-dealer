@@ -29,12 +29,16 @@ app.use("/api/messages", messageRoutes);
 
 addEmployees();
 
-sequelize.sync({ force: false }).then(() => {
-  console.log('database synced!');
-}). catch((error) => {
-  console.error('Error syncing database:', error);
-});
+const syncDatabase = async () => {
+  try {
+    await sequelize.sync({ force: false }); // Ensures database sync completes before moving on
+    console.log('Database synced!');
+  } catch (error) {
+    console.error('Error syncing database:', error);
+  }
+};
 
+syncDatabase(); 
 
 
 // Serve React static files
