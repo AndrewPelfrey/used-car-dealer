@@ -29,8 +29,7 @@ const LoginForm = () => {
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('username', username);
         localStorage.setItem('role', response.data.role);
-        window.dispatchEvent(new Event("storage")); // Triggering the storage event
-
+        window.dispatchEvent(new Event("storage")); 
         setIsLoggedIn(true);
         navigate('/');
       } else {
@@ -48,7 +47,7 @@ const LoginForm = () => {
     localStorage.removeItem('role');
 
     setIsLoggedIn(false);
-    window.dispatchEvent(new Event("storage")); // Triggering the storage event
+    window.dispatchEvent(new Event("storage")); 
     navigate('/');
   };
 
