@@ -9,14 +9,14 @@
   .about-content {
     max-width: 800px;
     text-align: center;
-    background-color: #333;
+    background-color: #161C21;
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .logo {
-    width: 150px;
+  .page-logo {
+    width: 300px;
     margin-bottom: 1rem;
   }
   
@@ -26,7 +26,7 @@
   
   .business-info h2 {
     margin-top: 1rem;
-    color: lightblue;
+    color: #5BACDC;
   }
   
   .business-info ul {
@@ -41,7 +41,7 @@
   .contact-button {
     margin-top: 1rem;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #5BACDC;
     color: white;
     border: none;
     border-radius: 5px;
