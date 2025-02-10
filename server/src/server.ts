@@ -1,13 +1,11 @@
 import express, { Request, Response } from "express";
-import bodyParser from "body-parser";
-import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import routes from "./routes/index.js";
 import sequelize from "./config/connections.js";
 import { addEmployees } from './seeds/addEmployees.js'
-import Router from "./routes/contact.js";
+import messageRoutes from "./routes/message-routes.js";
 
 dotenv.config();
 
@@ -19,11 +17,15 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
 app.use(express.json());
+app.use((_req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 app.use(routes);
-app.use(bodyParser.json());
-app.use("/api", Router);
+app.use("/api/messages", messageRoutes);
 
 addEmployees();
 

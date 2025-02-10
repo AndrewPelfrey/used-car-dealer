@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../database.js";
+import sequelize from "../config/connections.js"; 
 
 class Message extends Model {
   public id!: number;
