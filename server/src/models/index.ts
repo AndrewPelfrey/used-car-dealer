@@ -27,4 +27,4 @@ Car.belongsTo(CarInfo, { foreignKey: 'car_info_id' });
 Car.belongsToMany(Features, {through: CarFeatures})
 Features.belongsToMany(Car, {through: CarFeatures})
 
-export { sequelize, CarInfo, Car, Features };
+export { sequelize, CarInfo, Car, Features, CarFeatures };
