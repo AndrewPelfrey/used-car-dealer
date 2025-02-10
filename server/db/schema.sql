@@ -20,10 +20,10 @@ CREATE TABLE car (
     model VARCHAR(50) NOT NULL,
     year INT NOT NULL,
     mileage INT NOT NULL,
-    price DECIMAL(10, 2) NOT NULL,
     trim VARCHAR(50) NOT NULL,
     interior_color VARCHAR(50) NOT NULL,
     exterior_color VARCHAR(50) NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
     car_info_id INT REFERENCES car_info(id)
 );
 
