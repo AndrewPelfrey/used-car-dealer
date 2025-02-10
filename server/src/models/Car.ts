@@ -38,7 +38,7 @@ export function CarFactory(sequelize: Sequelize) {
     Car.init(
         {
             vin: {
-                type: DataTypes.INTEGER,
+                type: DataTypes.STRING,
                 autoIncrement: true,
                 primaryKey: true,
             },
@@ -84,7 +84,7 @@ export function CarFactory(sequelize: Sequelize) {
             },
         },
         {
-            tableName: 'cars',
+            tableName: 'car',
             sequelize, // passing the `sequelize` instance is required
         }
     );
