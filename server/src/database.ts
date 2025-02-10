@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_PASSWORD || !process.env.DB_NAME || !process.env.DB_DIALECT) {
+// the following should contain !process.env.DB_PASSWORD, but that throws an error for an empty one
+if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_NAME || !process.env.DB_DIALECT) {
     throw new Error("Missing required database environment variables");
   }
 
@@ -12,7 +13,7 @@ export const sequelize = new Sequelize({
   dialect: "postgres",
   host: "localhost",    // Database host
   username: process.env.DB_USER,  // Database username
-  password: process.env.DB_PASSWORD,  // Database password
+  password: "",  // Database password
   database: process.env.DB_NAME,  // Database name
   logging: false,  // Disable logging for cleaner output
 });

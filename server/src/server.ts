@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import routes from "./routes/index.js";
 import sequelize from "./config/connections.js";
 import { addEmployees } from './seeds/addEmployees.js'
+import Router from "./routes/contact.js";
 
 dotenv.config();
 
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 app.use(routes);
 app.use(bodyParser.json());
+app.use("/api", Router);
 
 addEmployees();
 

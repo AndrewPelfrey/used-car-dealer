@@ -1,5 +1,5 @@
 import { Model, DataTypes } from "sequelize";
-import { sequelize } from "../database"; // Check to see where this is set up
+import { sequelize } from "../database.js";
 
 class Message extends Model {
   public id!: number;
@@ -41,7 +41,7 @@ Message.init(
     },
   },
   {
-    sequelize, // passing the `sequelize` instance
+    sequelize,
     tableName: "messages",
   }
 );
