@@ -86,10 +86,8 @@ app.get("*", (_req, res) => {
 
 sequelize.sync({force: false}).then(() => {
   app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`);
+    console.log(`🚀 Server is listening on port ${PORT}`);
   });
 }); 
-
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
 export default app;
