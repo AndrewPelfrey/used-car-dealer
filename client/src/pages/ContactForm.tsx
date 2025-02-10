@@ -17,15 +17,19 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Enforce comments character limit
     if (formData.comments.length > 1000) {
-        alert("Comments Cannot exceed 100 characters.");
-        return;
-    };
+      alert("Comments cannot exceed 1000 characters.");
+      return;
+    }
 
     try {
       const response = await fetch("/api/messages", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
 
@@ -49,49 +53,20 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="contact-form-container">
-      <h1>Contact Us</h1>
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <label className="block">
-          Category:
-          <select name="category" value={formData.category} onChange={handleChange}>
-            <option>Service Request</option>
-            <option>Interest in a Car</option>
-            <option>Appraisal</option>
-            <option>General Inquiry</option>
-          </select>
-        </label>
-
-        <label className="block">
-          First Name:
-          <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
-        </label>
-
-        <label className="block">
-          Last Name:
-          <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
-        </label>
-
-        <label className="block">
-          Email:
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </label>
-
-        <label className="block">
-          Phone:
-          <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
-        </label>
-
-        <label className="block">
-          Comments (1000 characters max):
-          <textarea name="comments" value={formData.comments} onChange={handleChange} required />
-        </label>
-
-        <button type="submit">
-          Submit
-        </button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <select name="category" value={formData.category} onChange={handleChange} required>
+        <option value="Service Request">Service Request</option>
+        <option value="Interest in a Car">Interest in a Car</option>
+        <option value="Appraisal">Appraisal</option>
+        <option value="General Inquiry">General Inquiry</option>
+      </select>
+      <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} placeholder="First Name" required />
+      <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} placeholder="Last Name" required />
+      <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" required />
+      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="Phone Number" required />
+      <textarea name="comments" value={formData.comments} onChange={handleChange} placeholder="Comments (Max 1000 characters)" maxLength={1000} required />
+      <button type="submit">Submit</button>
+    </form>
   );
 };
 

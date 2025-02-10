@@ -6,6 +6,12 @@ export const seedMessages = async () => {
     // await sequelize.sync({ force: true }); will reset the tables before sync
     await sequelize.sync();
 
+    const existingMessages = await Message.findAll();
+    if (existingMessages.length > 0) {
+      console.log("✅ Messages already seeded.");
+      return;
+    }
+
     await Message.bulkCreate([
       {
         category: 'Service Request',

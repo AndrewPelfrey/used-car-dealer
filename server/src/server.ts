@@ -6,7 +6,7 @@ import routes from "./routes/index.js";
 import sequelize from "./config/connections.js";
 import { addEmployees } from './seeds/addEmployees.js'
 import { seedMessages } from "./seeds/addMessages.js";
-import messageRoutes from "./routes/message-routes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 
 dotenv.config();
 
