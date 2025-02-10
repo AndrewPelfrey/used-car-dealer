@@ -11,10 +11,10 @@ if (!process.env.DB_HOST || !process.env.DB_USER || !process.env.DB_NAME || !pro
 // Set up a Sequelize instance and export it
 export const sequelize = new Sequelize({
   dialect: "postgres",
-  host: "localhost",    // Database host
-  username: process.env.DB_USER,  // Database username
+  host: "localhost",
+  username: process.env.DB_USER,
   password: "",  // Database password
-  database: process.env.DB_NAME,  // Database name
+  database: process.env.DB_NAME,
   logging: false,  // Disable logging for cleaner output
 });
 
