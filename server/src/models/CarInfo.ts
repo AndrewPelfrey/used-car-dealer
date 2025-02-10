@@ -26,7 +26,7 @@ export class CarInfo extends Model<CarInfoAttributes, CarInfoCreationAttributes>
     public readonly updatedAt!: Date;
 }
 
-export function initCarInfo(sequelize: Sequelize) {
+export function CarInfoFactory(sequelize: Sequelize) {
     CarInfo.init(
         {
             id: {
@@ -64,5 +64,7 @@ export function initCarInfo(sequelize: Sequelize) {
             sequelize, // passing the `sequelize` instance is required
         }
     );
+
+    return CarInfo;
 }
 
