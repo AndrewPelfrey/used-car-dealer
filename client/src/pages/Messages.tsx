@@ -12,13 +12,15 @@ const Messages: React.FC = () => {
       setError(null);
 
       const token = localStorage.getItem("token"); // Retrieve JWT token from storage
+      // Remove this once it's confirmed
+      console.log("Sending token:", token);
 
       try {
         const response = await fetch("/api/messages", {
           method: "GET",
           headers: {
+            "Authorization": `Bearer ${token}`,
             "Content-Type": "application/json",
-            Authorization: token ? `Bearer ${token}` : "", // Attach JWT token
           },
         });
 
