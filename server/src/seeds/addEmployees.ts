@@ -25,6 +25,7 @@ interface Employee {
 export async function addEmployees() {
     try {
         console.log('Syncing database...');
+        // await sequelize.sync({ force: true }); to reset the database. Revert afterwards.
         await sequelize.sync();
         const employees: Employee[] = [
             { username: 'Duncan', password: 'password', role: 'manager' },
