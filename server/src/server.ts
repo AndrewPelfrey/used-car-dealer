@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import routes from "./routes/index.js";
 import sequelize from "./config/connections.js";
 import { addEmployees } from './seeds/addEmployees.js'
+import { seedMessages } from "./seeds/addMessages.js";
 import messageRoutes from "./routes/message-routes.js";
 
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(routes);
 app.use("/api/messages", messageRoutes);
 
 addEmployees();
+seedMessages();
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");

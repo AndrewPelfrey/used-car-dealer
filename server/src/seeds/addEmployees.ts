@@ -50,8 +50,8 @@ export async function addEmployees() {
             } else {
                 console.log(`Employee ${employee.username} already exists.`);
             }
-        }
+        } console.log('✅ Employees seeded successfully!');
     } catch (error) {
-        console.error('Error adding employees:', error);
+        console.error('❌ Error seeding employees:', error);
     }
 }
