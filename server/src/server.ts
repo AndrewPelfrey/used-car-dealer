@@ -18,29 +18,14 @@ const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
-app.use((_req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
 app.use(routes);
 app.use("/api/messages", messageRoutes);
 
 addEmployees();
 
-const syncDatabase = async () => {
-  try {
-    await sequelize.sync({ force: false }); // Ensures database sync completes before moving on
-    console.log('Database synced!');
-  } catch (error) {
-    console.error('Error syncing database:', error);
-  }
-};
-
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
-app.use(express.static(clientBuildPath));
+app.use(express.static('../client/dist'));
 
 // Sample car database (Replace with a real database)
 const cars = [
@@ -98,8 +83,13 @@ app.get("*", (_req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
-syncDatabase(); 
+sequelize.sync({force: false}).then(() => {
+  app.listen(PORT, () => {
+    console.log(`Server is listening on port ${PORT}`);
+  });
+}); 
+
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
 export default app;
