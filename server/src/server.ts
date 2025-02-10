@@ -25,7 +25,7 @@ addEmployees();
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
-app.use(express.static('../client/dist'));
+app.use(express.static('../../client/dist'));
 
 // Sample car database (Replace with a real database)
 const cars = [
