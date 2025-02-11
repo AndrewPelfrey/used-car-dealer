@@ -34,7 +34,5 @@ export const seedMessages = async () => {
     console.log('✅ Messages seeded successfully!');
   } catch (error) {
     console.error('❌ Error seeding messages:', error);
-  } finally {
-    await sequelize.close();
   }
 };
