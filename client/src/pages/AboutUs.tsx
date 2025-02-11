@@ -1,17 +1,17 @@
 import React from "react";
-import "../styles/aboutUs.css"; // Create this stylesheet for styling
+import "../styles/AboutUs.css"; // Create this stylesheet for styling
 
 const AboutUs: React.FC = () => {
   return (
     <div className="about-container">
       <div className="about-content">
-        <img src="/logo.png" alt="AutoScout Logo" className="logo" />
+        <img src="/images/icons/autoscoutLogo.png" alt="AutoScout Logo" className="page-logo" />
         <h1>About AutoScout</h1>
         <p>
-          Welcome to <strong>AutoScout</strong>, a family-run used car dealership
-          that has been serving our community since 2018. Founded by a father and
-          son duo with a deep passion for the mechanics and beauty of vehicles, we
-          take pride in offering a handpicked selection of quality used cars.
+        Welcome to <strong>AutoScout</strong>, a family-run used car dealership
+        that has been serving our community since 2018. Founded by a father and
+        son duo with a deep passion for the mechanics and beauty of vehicles, we
+        take pride in offering a handpicked selection of quality used cars.
         </p>
         <p>
         At AutoScout, we keep a small inventory of around 20-30 cars, ensuring
@@ -28,7 +28,7 @@ const AboutUs: React.FC = () => {
         <div className="business-info">
           <h2>Our Dealership</h2>
           <p><strong>Address:</strong> 1234 Placeholder St, Anytown, USA</p>
-          <p><strong>Phone:</strong> (555) 123-4567</p>
+          <p><strong>Phone:</strong> (123) 456-7890</p>
 
           <h2>Business Hours</h2>
           <ul>

@@ -1,4 +1,5 @@
 import { DataTypes, Sequelize, Model, Optional } from 'sequelize';
+
 interface CarAttributes {
     vin: number;
     make: string;
@@ -13,6 +14,7 @@ interface CarAttributes {
     image_url: string;
 }
 interface CarCreationAttributes extends Optional<CarAttributes, 'vin'> {}
+
 export class Car extends Model<CarAttributes, CarCreationAttributes> implements CarAttributes {
     public vin!: number;
     public make!: string;

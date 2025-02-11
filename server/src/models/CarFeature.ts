@@ -1,4 +1,5 @@
 import { DataTypes, Sequelize, Model } from 'sequelize';
+
 interface CarFeaturesAttributes {
     car_id: string;
     feature_id: string;
@@ -6,6 +7,7 @@ interface CarFeaturesAttributes {
 export class CarFeatures extends Model<CarFeaturesAttributes> implements CarFeaturesAttributes {
    public car_id!: string;
    public feature_id!: string;
+   
    // timestamps!
    public readonly createdAt!: Date;
    public readonly updatedAt!: Date;

@@ -23,7 +23,7 @@ const Contact: React.FC = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
+      const response = await fetch("http://localhost:3001/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="contact-form-container">
       <h1>Contact Us</h1>
       <form className="contact-form" onSubmit={handleSubmit}>
         <label className="block">
