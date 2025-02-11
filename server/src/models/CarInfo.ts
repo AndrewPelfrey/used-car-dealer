@@ -9,7 +9,6 @@ interface CarInfoAttributes {
     fuel_eco_city: number;
     fuel_eco_highway: number;
 }
-
 interface CarInfoCreationAttributes extends Optional<CarInfoAttributes, 'id'> {}
 
 export class CarInfo extends Model<CarInfoAttributes, CarInfoCreationAttributes> implements CarInfoAttributes {
@@ -25,7 +24,6 @@ export class CarInfo extends Model<CarInfoAttributes, CarInfoCreationAttributes>
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
-
 export function CarInfoFactory(sequelize: Sequelize) {
     CarInfo.init(
         {
@@ -64,7 +62,5 @@ export function CarInfoFactory(sequelize: Sequelize) {
             sequelize, // passing the `sequelize` instance is required
         }
     );
-
     return CarInfo;
 }
-
