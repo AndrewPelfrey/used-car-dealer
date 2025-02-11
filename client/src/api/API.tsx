@@ -1,4 +1,4 @@
-const API_URL = `${import.meta.env.VITE_API_BASE_URL}/cars`;
+const API_URL = "/api/cars"; // ✅ Relative API URL for client-side requests
 
 export const fetchCars = async (make?: string, model?: string, year?: string) => {
   try {
@@ -18,6 +18,7 @@ export const fetchCars = async (make?: string, model?: string, year?: string) =>
     });
 
     if (!response.ok) {
+      console.error(`Error: ${response.status} - ${response.statusText}`);
       const errorText = await response.text();
       throw new Error(`Failed to fetch cars: ${response.status} - ${errorText}`);
     }
@@ -25,7 +26,9 @@ export const fetchCars = async (make?: string, model?: string, year?: string) =>
     return await response.json();
   } catch (err) {
     console.error("Error fetching cars:", err);
-    throw err;
+    return []; // ✅ Prevent breaking UI when API fails
   }
 };
+
+
 
