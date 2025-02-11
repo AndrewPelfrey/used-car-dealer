@@ -17,15 +17,19 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Enforce comments character limit
     if (formData.comments.length > 1000) {
-        alert("Comments Cannot exceed 100 characters.");
-        return;
-    };
+      alert("Comments cannot exceed 1000 characters.");
+      return;
+    }
 
     try {
-      const response = await fetch("http://localhost:3001/api/contact", {
+      const response = await fetch("/api/messages", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
 
@@ -61,32 +65,26 @@ const Contact: React.FC = () => {
             <option>General Inquiry</option>
           </select>
         </label>
-
         <label className="block">
           First Name:
           <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} required />
         </label>
-
         <label className="block">
           Last Name:
           <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} required />
         </label>
-
         <label className="block">
           Email:
           <input type="email" name="email" value={formData.email} onChange={handleChange} required />
         </label>
-
         <label className="block">
           Phone:
           <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required />
         </label>
-
         <label className="block">
           Comments (1000 characters max):
           <textarea name="comments" value={formData.comments} onChange={handleChange} required />
         </label>
-
         <button type="submit">
           Submit
         </button>
