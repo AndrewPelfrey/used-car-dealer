@@ -32,14 +32,9 @@ const LoginForm = () => {
       if (data.token) {
         localStorage.setItem('token', data.token);
         localStorage.setItem('username', username);
-<<<<<<< HEAD
-        localStorage.setItem('role', response.data.role);
-        window.dispatchEvent(new Event("storage")); 
-=======
         localStorage.setItem('role', data.role);
         window.dispatchEvent(new Event('storage'));
     
->>>>>>> bb53f4e60fe10cac69d58568e1c1925feb86b2f8
         setIsLoggedIn(true);
         navigate('/');
       } else {
