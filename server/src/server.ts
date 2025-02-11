@@ -1,11 +1,12 @@
 import express, { Request, Response } from "express";
-import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 import routes from "./routes/index.js";
 import sequelize from "./config/connections.js";
 import { addEmployees } from './seeds/addEmployees.js'
+import { seedMessages } from "./seeds/addMessages.js";
+import messageRoutes from "./routes/messageRoutes.js";
 
 dotenv.config();
 
@@ -17,27 +18,17 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors({
-  origin: 'http://localhost:5173', 
-    methods: ['GET', 'POST'],
-    credentials: true,
-}));
 app.use(express.json());
 app.use(routes);
+app.use("/api/messages", messageRoutes);
 
+// These run the seeds
 addEmployees();
-
-sequelize.sync({ force: false }).then(() => {
-  console.log('database synced!');
-}). catch((error) => {
-  console.error('Error syncing database:', error);
-});
-
-
+seedMessages();
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
-app.use(express.static(clientBuildPath));
+app.use(express.static('../../client/dist'));
 
 // Sample car database (Replace with a real database)
 const cars = [
@@ -95,7 +86,11 @@ app.get("*", (_req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
+sequelize.sync({force: false}).then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is listening on port ${PORT}`);
+  });
+}); 
 
 export default app;

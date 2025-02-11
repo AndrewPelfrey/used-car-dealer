@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
@@ -20,17 +19,22 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', {
-        username,
-        password
+      const response = await fetch('/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }), 
       });
-
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+    
+      const data = await response.json();
+    
+      if (data.token) {
+        localStorage.setItem('token', data.token);
         localStorage.setItem('username', username);
-        localStorage.setItem('role', response.data.role);
-        window.dispatchEvent(new Event("storage")); // Triggering the storage event
-
+        localStorage.setItem('role', data.role);
+        window.dispatchEvent(new Event('storage'));
+    
         setIsLoggedIn(true);
         navigate('/');
       } else {
@@ -40,7 +44,8 @@ const LoginForm = () => {
       console.error('Login error:', error);
       setLoginMessage('Login failed');
     }
-  };
+  }
+    
 
   const handleLogout = () => {
     localStorage.removeItem('token');
