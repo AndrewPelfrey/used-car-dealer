@@ -5,10 +5,13 @@ import Cars from "../models/CarSearch.js";
 const carsRouter = express.Router();
 
 // GET /api/cars - Fetch cars by make, model, or year
-carsRouter.get("/api/cars", async (req, res) => {
+carsRouter.get("/", async (req, res) => {
   try {
-    // Destructure query parameters (make, model, year)
-    const { make, model, year }: { make?: string; model?: string; year?: string } = req.query;
+    // Extract query parameters safely
+    const make = req.query.make as string | undefined;
+    const model = req.query.model as string | undefined;
+    const year = req.query.year as string | undefined;
+
     const whereClause: { [key: string]: any } = {}; // Initialize empty where clause for filtering
 
     // Build where clause based on provided query parameters
@@ -28,5 +31,6 @@ carsRouter.get("/api/cars", async (req, res) => {
 });
 
 export default carsRouter;
+
 
 

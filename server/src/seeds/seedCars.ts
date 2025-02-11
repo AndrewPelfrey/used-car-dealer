@@ -9,7 +9,7 @@ export const seedCars = async () => {
 
     const existingCars = await Cars.findAll();
     if (existingCars.length > 0) {
-      console.log("Database already seeded.");
+      console.log("✅ Car search database already seeded.");
       return;
     }
 
