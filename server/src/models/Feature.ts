@@ -4,18 +4,16 @@ interface FeaturesAttributes {
     id: number;
     name: string;
 }
-
 interface FeaturesCreationAttributes extends Optional<FeaturesAttributes, 'id'> {}
 
 export class Features extends Model<FeaturesAttributes, FeaturesCreationAttributes> implements FeaturesAttributes {
     public id!: number;
     public name!: string;
-
+    
     // timestamps!
     public readonly createdAt!: Date;
     public readonly updatedAt!: Date;
 }
-
 export function FeaturesFactory(sequelize: Sequelize) {
     Features.init(
         {
@@ -34,6 +32,5 @@ export function FeaturesFactory(sequelize: Sequelize) {
             sequelize, // passing the `sequelize` instance is required
         }
     );
-
     return Features;
 }

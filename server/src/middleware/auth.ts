@@ -17,6 +17,7 @@ export const authenticateToken = (
     next: NextFunction
 ) => {
     const authHeader = req.headers.authorization;
+    console.log(authHeader);
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
         console.log("Unauthorized: No token provided");

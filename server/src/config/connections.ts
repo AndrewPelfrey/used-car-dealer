@@ -26,7 +26,7 @@ const sequelize = process.env.DB_URL
 
 sequelize.authenticate()
   .then(() => console.log('Connected to the database'))
-  .catch(err => console.error(' Database connection failed:', err));
+  .catch(err => console.error(' Database connection failed connection.ts:', err));
 
   
 export default sequelize;

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/AboutUs.css"; // Create this stylesheet for styling
+import "../styles/aboutUs.css"; // Create this stylesheet for styling
 
 const AboutUs: React.FC = () => {
   return (
