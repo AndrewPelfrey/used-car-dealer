@@ -28,8 +28,10 @@ const Messages: React.FC = () => {
           throw new Error(`Failed to fetch messages. Status: ${response.status}`);
         }
 
-        const data = await response.json();
-        console.log("Fetched Messages:", data);
+        const text = await response.text();
+        console.log("Raw Response:", text);
+        //console.log("Fetched Messages:", data);
+        const data = JSON.parse(text);
         setMessages(data);
       } catch (error) {
         console.error("Error fetching messages:", error);
