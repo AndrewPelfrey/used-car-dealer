@@ -1,35 +1,43 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
 interface JwtPayload {
+    id: number;
     username: string;
+    role: string;
 }
 
 interface AuthenticatedRequest extends Request {
-    user?: JwtPayload
+    user?: JwtPayload;
 }
 
 export const authenticateToken = (
     req: AuthenticatedRequest,
     res: Response,
-    next: NextFunction,
+    next: NextFunction
 ) => {
     const authHeader = req.headers.authorization;
 
-    if (authHeader) {
-        const token = authHeader.split(' ')[1];
-
-        const secretKey = process.env.JWT_SECRET_KEY || '';
-
-        jwt.verify(token, secretKey, (err, user) => {
-            if (err) {
-                return res.sendStatus(403);
-            }
-
-            req.user = user as JwtPayload;
-            return next();
-        });
-    } else {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        console.log("Unauthorized: No token provided");
         res.sendStatus(401);
+        return;
     }
+
+    const token = authHeader.split(" ")[1];
+    const secretKey = process.env.JWT_SECRET_KEY || "";
+
+    jwt.verify(token, secretKey, (err, decoded) => {
+        if (err) {
+            console.log("Forbidden: Invalid token", err);
+            res.sendStatus(403);
+            return;
+        }
+
+        console.log("Decoded token:", decoded);
+        req.user = decoded as JwtPayload;
+        next();
+    });
+
+    return;
 };

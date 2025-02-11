@@ -1,64 +1,95 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "../styles/messages.css";
-// For use with the Employee page. This views the submitted information. Currently not hooked.
-
-interface Message {
-  id: number;
-  firstName: string;
-  lastName: string;
-  category: string;
-  email: string;
-  phone: string;
-  comments: string;
-}
+import "../styles/contact.css";
 
 const Messages: React.FC = () => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/messages")
-      .then((response) => response.json())
-      .then((data) => setMessages(data))
-      .catch((error) => console.error("Error fetching messages:", error));
+    const fetchMessages = async () => {
+      setLoading(true);
+      setError(null);
+
+      const token = localStorage.getItem("token"); // Retrieve JWT token from storage
+      // Remove this once it's confirmed
+      console.log("Sending token:", token);
+
+      try {
+        const response = await fetch("/api/messages", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch messages. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Fetched Messages:", data);
+        setMessages(data);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+        setError("Failed to fetch messages. Please log in again.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMessages();
   }, []);
 
   const handleDelete = async (id: number) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this message?");
-    if (!confirmDelete) return;
+    if (!window.confirm("Are you sure you want to delete this message?")) return;
+
+    const token = localStorage.getItem("token"); // Retrieve JWT token for delete request
 
     try {
-      await fetch(`http://localhost:3001/api/messages/${id}`, {
+      const response = await fetch(`/api/messages/${id}`, {
         method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        },
       });
-      setMessages(messages.filter((msg) => msg.id !== id));
+
+      if (response.ok) {
+        setMessages((prevMessages) => prevMessages.filter((message) => message.id !== id));
+      } else {
+        console.error("Failed to delete message.");
+      }
     } catch (error) {
       console.error("Error deleting message:", error);
     }
   };
 
   return (
-    <div className="messages-container">
-      <h1>Messages</h1>
-      {messages.length === 0 ? (
-        <p>No messages available.</p>
-      ) : (
-        messages.map((msg) => (
-          <div key={msg.id} className="message-card">
-            <div className="message-content">
-              <p><strong>Name:</strong> {msg.firstName} {msg.lastName}</p>
-              <p><strong>Category:</strong> {msg.category}</p>
-              <p><strong>Email:</strong> {msg.email}</p>
-              <p><strong>Phone:</strong> {msg.phone}</p>
-              <p><strong>Comments:</strong> {msg.comments}</p>
+    <div className="contact-form-container">
+      <h1>Submitted Messages</h1>
+      {error && <p className="error">{error}</p>}
+      {loading ? (
+        <p>Loading messages...</p>
+      ) : messages.length > 0 ? (
+        <div className="messages-list">
+          {messages.map((message) => (
+            <div key={message.id} className="contact-message">
+              <h3>{message.firstName} {message.lastName}</h3>
+              <p>Email: {message.email}</p>
+              <p>Phone: {message.phone}</p>
+              <p>Category: {message.category}</p>
+              <p>Comments: {message.comments}</p>
+              <button onClick={() => handleDelete(message.id)} className="delete-btn">
+                Delete
+              </button>
             </div>
-            <button className="delete-button" onClick={() => handleDelete(msg.id)}>Delete</button>
-          </div>
-        ))
+          ))}
+        </div>
+      ) : (
+        <p>No messages to display.</p>
       )}
-
-      {/* Redirect to home, but should go to the employee page instead */}
-      <Link to="/" className="back-link">Back to Home</Link>
     </div>
   );
 };

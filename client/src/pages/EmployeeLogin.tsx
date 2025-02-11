@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
@@ -20,16 +19,27 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/login', {
-        username,
-        password
+      const response = await fetch('/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }), 
       });
-
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
+    
+      const data = await response.json();
+    
+      if (data.token) {
+        localStorage.setItem('token', data.token);
         localStorage.setItem('username', username);
+<<<<<<< HEAD
         localStorage.setItem('role', response.data.role);
         window.dispatchEvent(new Event("storage")); 
+=======
+        localStorage.setItem('role', data.role);
+        window.dispatchEvent(new Event('storage'));
+    
+>>>>>>> bb53f4e60fe10cac69d58568e1c1925feb86b2f8
         setIsLoggedIn(true);
         navigate('/');
       } else {
@@ -39,7 +49,8 @@ const LoginForm = () => {
       console.error('Login error:', error);
       setLoginMessage('Login failed');
     }
-  };
+  }
+    
 
   const handleLogout = () => {
     localStorage.removeItem('token');
