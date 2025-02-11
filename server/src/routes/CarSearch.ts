@@ -5,7 +5,7 @@ import Cars from "../models/CarSearch.js";
 const carsRouter = express.Router();
 
 // GET /api/cars - Fetch cars by make, model, or year
-carsRouter.get("/", async (req, res) => {
+carsRouter.get("/api/cars", async (req, res) => {
   try {
     // Destructure query parameters (make, model, year)
     const { make, model, year }: { make?: string; model?: string; year?: string } = req.query;
