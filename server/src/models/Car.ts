@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/connections.js";
 
-class Car extends Model {}
+class Cars extends Model {}
 
-Car.init(
+Cars.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -26,8 +26,9 @@ Car.init(
   {
     sequelize,
     modelName: "car",
-    timestamps: false,
+    timestamps: false,  // Disable timestamps (createdAt/updatedAt)
   }
 );
 
-export default Car;
+export default Cars;
+

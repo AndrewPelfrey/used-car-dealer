@@ -1,4 +1,4 @@
-const API_URL = `${import.meta.env.VITE_API_BASE_URL}/cars`;
+const API_URL = '/api/cars';  // Use the relative API URL instead of the full base URL
 
 export const fetchCars = async (make?: string, model?: string, year?: string) => {
   try {

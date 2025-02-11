@@ -1,20 +1,25 @@
 import express from "express";
-import { Op } from "sequelize";  // ✅ Import Op for filtering
+import { Op } from "sequelize";  // Import Op for filtering
 import Car from "../models/Car.js";
 
-const router = express.Router();
+const carsRouter = express.Router();
 
 // GET /api/cars - Fetch cars by make, model, or year
-router.get("/", async (req, res) => {
+carsRouter.get("/", async (req, res) => {
   try {
-    const { make, model, year } = req.query;
-    const whereClause: any = {};
+    // Destructure query parameters (make, model, year)
+    const { make, model, year }: { make?: string; model?: string; year?: string } = req.query;
+    const whereClause: { [key: string]: any } = {}; // Initialize empty where clause for filtering
 
-    if (make) whereClause.make = { [Op.iLike]: `%${make}%` };
-    if (model) whereClause.model = { [Op.iLike]: `%${model}%` };
-    if (year) whereClause.year = parseInt(year as string, 10);
+    // Build where clause based on provided query parameters
+    if (make) whereClause.make = { [Op.iLike]: `%${make}%` };  // Case-insensitive search for 'make'
+    if (model) whereClause.model = { [Op.iLike]: `%${model}%` };  // Case-insensitive search for 'model'
+    if (year && !isNaN(parseInt(year, 10))) whereClause.year = parseInt(year, 10);  // Filter by year if valid number
 
+    // Query the database to find all cars that match the filter criteria
     const cars = await Car.findAll({ where: whereClause });
+
+    // Respond with the fetched cars data
     res.json(cars);
   } catch (error) {
     console.error("Error fetching cars:", error);
@@ -22,5 +27,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-export default router;
+export default carsRouter;
+
 

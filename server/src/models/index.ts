@@ -2,11 +2,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 import { Sequelize } from 'sequelize';
-import { CarInfoFactory } from './CarInfo';
-import { CarFactory } from './Car';
-import { FeaturesFactory } from './Feature';
-import { CarFeaturesFactory } from './CarFeature';
+import { CarInfoFactory } from './CarInfo';  // Assuming this is another model factory
+import Cars from './Car';  // Import Cars model directly (no need to call it as a function)
+import { FeaturesFactory } from './Feature';  // Another model factory
+import { CarFeaturesFactory } from './CarFeature';  // Relationship model factory
 
+// Initialize Sequelize connection
 const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
   : new Sequelize(process.env.DB_NAME || '', process.env.DB_USER || '', process.env.DB_PASSWORD, {
@@ -17,14 +18,16 @@ const sequelize = process.env.DB_URL
       },
     });
 
+// Create the models using the factories
 const CarInfo = CarInfoFactory(sequelize);
-const Car = CarFactory(sequelize);
 const Features = FeaturesFactory(sequelize);
 const CarFeatures = CarFeaturesFactory(sequelize);
 
-CarInfo.hasMany(Car, { foreignKey: 'car_info_id' });
-Car.belongsTo(CarInfo, { foreignKey: 'car_info_id' });
-Car.belongsToMany(Features, {through: CarFeatures})
-Features.belongsToMany(Car, {through: CarFeatures})
+// Define relationships
+CarInfo.hasMany(Cars, { foreignKey: 'car_info_id' });
+Cars.belongsTo(CarInfo, { foreignKey: 'car_info_id' });
+Cars.belongsToMany(Features, { through: CarFeatures });
+Features.belongsToMany(Cars, { through: CarFeatures });
 
-export { sequelize, CarInfo, Car, Features, CarFeatures };
+export { sequelize, CarInfo, Cars, Features, CarFeatures };
+
