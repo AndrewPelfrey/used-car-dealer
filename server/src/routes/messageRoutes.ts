@@ -11,17 +11,17 @@ const ensureDatabaseConnection = async () => {
     await sequelize.authenticate();
     console.log("Database connection is active.");
   } catch (error) {
-    console.error("Database connection failed:", error);
+    console.error("Database connection failed in messageRoutes:", error);
     throw new Error("Database connection is closed.");
   }
 };
 
 // POST: Save the contact form data to the database
-router.post("/messages", authenticateToken, async (req: Request, res: Response) => {
+router.post("/messages", async (req: Request, res: Response) => {
   const { category, firstName, lastName, email, phone, comments } = req.body;
 
   try {
-    await ensureDatabaseConnection();
+    // await ensureDatabaseConnection();
     const newMessage = await Message.create({
       category,
       firstName,
