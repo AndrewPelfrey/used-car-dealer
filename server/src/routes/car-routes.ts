@@ -1,11 +1,10 @@
 import { Router, Request, Response } from "express";
 import Car from "../models/Car.js";
-import sequelize from "../config/connections.js"; // Import the sequelize connection
-import { Op } from "sequelize"; // Ensure Op is imported
+import sequelize from "../config/connections.js";
+import { Op } from "sequelize";
 
 const router = Router();
 
-// Ensure database connection before processing requests
 const ensureDatabaseConnection = async () => {
   try {
     await sequelize.authenticate();
@@ -16,47 +15,12 @@ const ensureDatabaseConnection = async () => {
   }
 };
 
-// GET: Fetch distinct makes and models from the database
-router.get("/cars/makes-models", async (_req: Request, res: Response) => {
-  try {
-    // Ensure the database connection
-    await ensureDatabaseConnection();
-
-    // Query to get distinct makes and models
-    const makes = await Car.findAll({
-      attributes: ["make"],
-      group: ["make"], // Group by make to get unique makes
-    });
-
-    const models = await Car.findAll({
-      attributes: ["model"],
-      group: ["model"], // Group by model to get unique models
-    });
-
-    // Extract the makes and models into separate arrays
-    const makeList = makes.map((car: any) => car.make);
-    const modelList = models.map((car: any) => car.model);
-
-    // Return the makes and models
-    res.json({
-      makes: makeList,
-      models: modelList,
-    });
-  } catch (error) {
-    console.error("Error fetching makes and models:", error);
-    res.status(500).json({ error: "Failed to fetch makes and models" });
-  }
-});
-
-// GET: Fetch cars with optional filters from the database
 router.get("/cars", async (req: Request, res: Response) => {
   const { make, model, year, price_min, price_max, mileage_min, mileage_max, engine, transmission, fuel_eco_min, fuel_eco_max } = req.query;
 
   try {
-    // Ensure the database connection
     await ensureDatabaseConnection();
 
-    // Build dynamic query based on provided filters
     const filterConditions: any = {};
 
     if (make) {
@@ -70,7 +34,7 @@ router.get("/cars", async (req: Request, res: Response) => {
     }
     if (price_min || price_max) {
       filterConditions.price = {
-        ...(price_min && { [Op.gte]: price_min }), // Use Op.gte and Op.lte operators
+        ...(price_min && { [Op.gte]: price_min }),
         ...(price_max && { [Op.lte]: price_max }),
       };
     }
@@ -93,7 +57,6 @@ router.get("/cars", async (req: Request, res: Response) => {
       };
     }
 
-    // Query the cars table with the built filter conditions
     const cars = await Car.findAll({
       where: filterConditions,
       order: [["year", "DESC"]],

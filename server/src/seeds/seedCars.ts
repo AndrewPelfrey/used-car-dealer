@@ -1,10 +1,11 @@
-import sequelize from "../config/connections.js";  // Ensure this import path is correct
-import Car from "../models/Car.js";  // Ensure this import path is correct
+import sequelize from "../config/connections.js"; 
+import Car from "../models/Car.js"; 
 
 export const seedCars = async () => {
   try {
     console.log("Seeding cars...");
     // await sequelize.sync({ force: true }); to reset the database 
+    // This will run into a problem on the first run, and maybe even restarting the server after that...
     await sequelize.sync();
     console.log("✅ Database synced!");
 
