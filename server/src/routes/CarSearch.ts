@@ -6,6 +6,7 @@ const carsRouter = express.Router();
 
 // GET /api/cars - Fetch cars by make, model, or year
 carsRouter.get("/", async (req, res) => {
+
   try {
     // Extract query parameters safely
     const make = req.query.make as string | undefined;

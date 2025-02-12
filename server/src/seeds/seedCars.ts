@@ -24,8 +24,6 @@ export const seedCars = async () => {
     console.log("✅ Car database seeded successfully!");
   } catch (error) {
     console.error("❌ Error seeding database:", error);
-  } finally {
-    process.exit();  // Exit the process after seeding
   }
 };
 
