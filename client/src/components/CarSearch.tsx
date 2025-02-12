@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CarForm from "./CarForm";
 import CarList from "./CarList";
 import { Car } from "../interfaces/Car";
-import { fetchCars } from "../api/API"; 
+import { fetchCars } from "../api/API";
 
 const CarSearch: React.FC = () => {
   const [make, setMake] = useState<string>("");
@@ -11,18 +11,45 @@ const CarSearch: React.FC = () => {
   const [cars, setCars] = useState<Car[]>([]);
   const [error, setError] = useState<string>("");
 
+  // Fetch all cars on initial render
+  useEffect(() => {
+    const loadCars = async () => {
+      try {
+        const data = await fetchCars("", "", ""); // Fetch all cars
+        if (data.length === 0) {
+          setError("No cars found.");
+        } else {
+          setCars(data);
+        }
+      } catch (err) {
+        console.error("Error fetching cars:", err);
+        setError("Failed to fetch cars. Please try again later.");
+      }
+    };
+
+    loadCars();
+  }, []);
+
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(""); // Reset any previous error
-
+    setError(""); // Reset error before searching
+  
     try {
-      const data = await fetchCars(make, model, year); 
-      setCars(data);
+      const data = await fetchCars(make, model, year);
+      console.log("Fetched cars:", data); // Debugging log
+  
+      if (!data || data.length === 0) {
+        setError("No cars found.");
+        setCars([]); // Ensure cars list is cleared
+      } else {
+        setCars(data);
+      }
     } catch (err) {
       console.error("Error fetching cars:", err);
       setError("Failed to fetch cars. Please try again later.");
     }
   };
+  
 
   return (
     <div>
