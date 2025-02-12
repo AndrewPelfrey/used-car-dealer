@@ -6,6 +6,7 @@ import { CarInfoFactory } from './CarInfo';
 import { CarFactory } from './Car';
 import { FeaturesFactory } from './Feature';
 import { CarFeaturesFactory } from './CarFeature';
+import { User } from './user';
 
 const sequelize = process.env.DB_URL
   ? new Sequelize(process.env.DB_URL)
@@ -28,3 +29,4 @@ Car.belongsToMany(Features, {through: CarFeatures})
 Features.belongsToMany(Car, {through: CarFeatures})
 
 export { sequelize, CarInfo, Car, Features, CarFeatures };
+export { User };

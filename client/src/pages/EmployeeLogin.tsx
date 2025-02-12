@@ -53,7 +53,7 @@ const LoginForm = () => {
     localStorage.removeItem('role');
 
     setIsLoggedIn(false);
-    window.dispatchEvent(new Event("storage")); // Triggering the storage event
+    window.dispatchEvent(new Event("storage")); 
     navigate('/');
   };
 

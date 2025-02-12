@@ -10,6 +10,7 @@ import { seedMessages } from "./seeds/addMessages.js";
 import messageRoutes from "./routes/messageRoutes.js";
 import carsRouter from "./routes/CarSearch.js";
 import { seedCars } from "./seeds/seedCars.js";
+import employeeRoutes from "./routes/employee-routes.js"
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use(routes);
 app.use("/api", messageRoutes);
 app.use("/api/cars", carsRouter); // Car search API
+app.use('/api', employeeRoutes);
 
 // These run the seeds
 seedCars();
