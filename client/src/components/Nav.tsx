@@ -50,6 +50,14 @@ const Nav = () => {
           </li>
         )}
 
+        {isLoggedIn && (
+          <li>
+            <NavLink to="/messages" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              View Messages
+            </NavLink>
+          </li>
+        )}
+
         {isLoggedIn && isManager && (
           <li>
             <NavLink to="/crud-employees" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
