@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Car } from "../interfaces/Car";
+import "../styles/carSearch.css";
 
 interface CarListProps {
   cars: Car[];
