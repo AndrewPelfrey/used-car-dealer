@@ -43,3 +43,31 @@ h1 {
 .delete-btn:hover {
   background-color: darkred;
 }
+
+.copy-email {
+  cursor: pointer;
+  color: #5BACDC;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.copy-email:hover {
+  color: #3498db;
+  text-decoration: underline;
+}
+
+.copied-confirm {
+  color: #5BACDC;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.message-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}

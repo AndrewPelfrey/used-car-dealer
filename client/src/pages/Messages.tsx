@@ -5,6 +5,7 @@ const Messages: React.FC = () => {
   const [messages, setMessages] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [copiedEmail, setCopiedEmail] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchMessages = async () => {
@@ -12,7 +13,6 @@ const Messages: React.FC = () => {
       setError(null);
 
       const token = localStorage.getItem("token"); // Retrieve JWT token from storage
-      console.log("Sending token:", token);
 
       try {
         const response = await fetch("/api/messages", {
@@ -73,6 +73,13 @@ const Messages: React.FC = () => {
     return phone; // Fallback if phone number is not exactly 10 digits
   };
 
+  const copyToClipboard = (email: string, id: number) => {
+    navigator.clipboard.writeText(email).then(() => {
+      setCopiedEmail(id); // Set the copied message ID
+      setTimeout(() => setCopiedEmail(null), 2000); // Hide after 2 seconds
+    }).catch(err => console.error("Failed to copy:", err));
+  };  
+
   return (
     <div className="contact-form-container">
       <h1>Submitted Messages</h1>
@@ -85,12 +92,22 @@ const Messages: React.FC = () => {
             <div key={message.id} className="contact-message">
               <h3>{message.firstName} {message.lastName}</h3>
               <p><strong>Category:</strong> {message.category}</p>
-              <p><strong>Email:</strong> {message.email}</p>
+              <p>
+                <strong>Email:</strong>{" "}
+                <span 
+                  className="copy-email"
+                  onClick={() => copyToClipboard(message.email, message.id)}
+                  title="Click to copy"
+                >
+                  {message.email}
+                </span>
+              </p>
               <p><strong>Phone:</strong> {formatPhoneNumber(message.phone)}</p>
               <p><strong>Comments:</strong> {message.comments}</p>
               <button onClick={() => handleDelete(message.id)} className="delete-btn">
                 Delete
               </button>
+              {copiedEmail === message.id && <span className="copied-confirm">✔ Copied!</span>}
             </div>
           ))}
         </div>
