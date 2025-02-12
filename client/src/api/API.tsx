@@ -1,11 +1,15 @@
 const API_URL = "/api/cars"; // ✅ Relative API URL for client-side requests
 
-export const fetchCars = async (make?: string, model?: string, year?: string) => {
+export const fetchCars = async (searchParams: Record<string, string>) => {
   try {
     const queryParams = new URLSearchParams();
-    if (make) queryParams.append("make", make);
-    if (model) queryParams.append("model", model);
-    if (year) queryParams.append("year", year);
+
+    // Iterate through searchParams and add non-empty values to the query
+    Object.entries(searchParams).forEach(([key, value]) => {
+      if (value.trim() !== "") {
+        queryParams.append(key, value);
+      }
+    });
 
     const url = `${API_URL}?${queryParams.toString()}`;
     console.log("Fetching cars from:", url); // ✅ Debugging log
@@ -29,6 +33,3 @@ export const fetchCars = async (make?: string, model?: string, year?: string) =>
     return []; // ✅ Prevent breaking UI when API fails
   }
 };
-
-
-
