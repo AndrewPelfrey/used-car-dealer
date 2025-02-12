@@ -1,0 +1,42 @@
+.service-department-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 2rem;
+    background-color: #161C21;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+.inquiry-link {
+    color: #d9d9d9;
+}
+  
+  h1 {
+    color: #5BACDC;
+    text-align: center;
+  }
+  
+  h2 {
+    color: white;
+    margin-top: 1.5rem;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: white;
+  }
+  
+  ul {
+    list-style-type: disc;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  li {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
