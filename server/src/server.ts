@@ -7,6 +7,7 @@ import sequelize from "./config/connections.js";
 import { addEmployees } from './seeds/addEmployees.js'
 import { seedMessages } from "./seeds/addMessages.js";
 import messageRoutes from "./routes/messageRoutes.js";
+import employeeRoutes from "./routes/employee-routes.js"
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(routes);
 app.use("/api", messageRoutes);
+app.use('/api', employeeRoutes);
 
 // These run the seeds
 addEmployees();
