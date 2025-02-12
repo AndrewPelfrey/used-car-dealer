@@ -35,7 +35,7 @@ export async function addEmployees() {
         ];
 
         for (const employee of employees) {
-            console.log(`Checking if employee ${employee.username} exists`);
+            //console.log(`Checking if employee ${employee.username} exists`);
             const existingUser = await User.findOne({ where: { username: employee.username } });
         
             if (!existingUser) {
@@ -48,7 +48,7 @@ export async function addEmployees() {
         
                 console.log(`Employee ${employee.username} added with hashed password.`);
             } else {
-                console.log(`Employee ${employee.username} already exists.`);
+                //console.log(`Employee ${employee.username} already exists.`);
             }
         } console.log('✅ Employees seeded successfully!');
     } catch (error) {

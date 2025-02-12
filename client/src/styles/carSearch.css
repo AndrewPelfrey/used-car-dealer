@@ -2,13 +2,13 @@
 .car-search-container {
     padding: 20px;
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background-color: #34383B;
   }
   
   /* Header */
   .car-search-container h1 {
     text-align: center;
-    color: #34383B;
+    color: #5BACDC;
     font-size: 36px;
     margin-bottom: 30px;
   }
@@ -24,7 +24,7 @@
   
   .search-criteria label {
     font-size: 16px;
-    color: #34383B;
+    color: #5BACDC;
     width: calc(33% - 20px); /* 3 columns layout */
   }
   
@@ -62,7 +62,7 @@
   }
   
   .car-card {
-    background-color: white;
+    background-color: #161C21;
     border: 1px solid #ddd;
     border-radius: 8px;
     width: calc(33% - 20px); /* 3 cards per row */
@@ -79,13 +79,13 @@
   
   .car-card h2 {
     font-size: 20px;
-    color: #161C21;
+    color: #5BACDC;
     margin-top: 10px;
   }
   
   .car-card p {
     font-size: 14px;
-    color: #34383B;
+    color: #d9d9d9;
     margin-top: 5px;
   }
   
