@@ -65,3 +65,15 @@
     background-color: #0056b3;
   }
   
+
+  .error {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 4px;
+  }
+  
+  .char-count {
+    font-size: 0.85rem;
+    color: gray;
+    margin-top: 4px;
+  }
