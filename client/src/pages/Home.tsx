@@ -33,7 +33,7 @@ const Home = () => {
       <section className="other-services">
         <h2>Other Services We Provide</h2>
         <div className="service-card-container">
-          <NavLink to="/service-Department" className="service-card">
+          <NavLink to="/service-department" className="service-card">
             <img src="/images/preview/engine.png" alt="Service Department" />
             <div className="service-text">Service Department</div>
           </NavLink>
