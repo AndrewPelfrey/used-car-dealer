@@ -24,9 +24,7 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(routes);
 app.use("/api", messageRoutes);
-  console.log("Message path: /api/messages");
 app.use("/api/cars", carsRouter); // Car search API
-  console.log("API path: /api/cars");
 
 // These run the seeds
 seedCars();
