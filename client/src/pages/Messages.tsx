@@ -12,7 +12,6 @@ const Messages: React.FC = () => {
       setError(null);
 
       const token = localStorage.getItem("token"); // Retrieve JWT token from storage
-      // Remove this once it's confirmed
       console.log("Sending token:", token);
 
       try {
@@ -30,7 +29,6 @@ const Messages: React.FC = () => {
 
         const text = await response.text();
         console.log("Raw Response:", text);
-        //console.log("Fetched Messages:", data);
         const data = JSON.parse(text);
         setMessages(data);
       } catch (error) {
@@ -47,7 +45,7 @@ const Messages: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (!window.confirm("Are you sure you want to delete this message?")) return;
 
-    const token = localStorage.getItem("token"); // Retrieve JWT token for delete request
+    const token = localStorage.getItem("token");
 
     try {
       const response = await fetch(`/api/messages/${id}`, {
@@ -68,6 +66,13 @@ const Messages: React.FC = () => {
     }
   };
 
+  const formatPhoneNumber = (phone: string) => {
+    if (phone.length === 10) {
+      return `(${phone.slice(0, 3)}) - ${phone.slice(3, 6)} - ${phone.slice(6)}`;
+    }
+    return phone; // Fallback if phone number is not exactly 10 digits
+  };
+
   return (
     <div className="contact-form-container">
       <h1>Submitted Messages</h1>
@@ -80,7 +85,7 @@ const Messages: React.FC = () => {
             <div key={message.id} className="contact-message">
               <h3>{message.firstName} {message.lastName}</h3>
               <p>Email: {message.email}</p>
-              <p>Phone: {message.phone}</p>
+              <p>Phone: {formatPhoneNumber(message.phone)}</p>
               <p>Category: {message.category}</p>
               <p>Comments: {message.comments}</p>
               <button onClick={() => handleDelete(message.id)} className="delete-btn">
