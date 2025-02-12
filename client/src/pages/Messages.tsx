@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/contact.css";
+import "../styles/messages.css";
 
 const Messages: React.FC = () => {
   const [messages, setMessages] = useState<any[]>([]);
@@ -84,10 +84,10 @@ const Messages: React.FC = () => {
           {messages.map((message) => (
             <div key={message.id} className="contact-message">
               <h3>{message.firstName} {message.lastName}</h3>
-              <p>Email: {message.email}</p>
-              <p>Phone: {formatPhoneNumber(message.phone)}</p>
-              <p>Category: {message.category}</p>
-              <p>Comments: {message.comments}</p>
+              <p><strong>Category:</strong> {message.category}</p>
+              <p><strong>Email:</strong> {message.email}</p>
+              <p><strong>Phone:</strong> {formatPhoneNumber(message.phone)}</p>
+              <p><strong>Comments:</strong> {message.comments}</p>
               <button onClick={() => handleDelete(message.id)} className="delete-btn">
                 Delete
               </button>

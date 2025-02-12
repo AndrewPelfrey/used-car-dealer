@@ -5,6 +5,7 @@ import "../styles/nav.css";
 const Nav = () => {
   const [token, setToken] = useState<string | null>(localStorage.getItem("token"));
   const [role, setRole] = useState<string | null>(localStorage.getItem("role"));
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const handleStorageChange = () => {
@@ -17,7 +18,7 @@ const Nav = () => {
     return () => {
       window.removeEventListener("storage", handleStorageChange);
     };
-  }, []); 
+  }, []);
 
   const isLoggedIn = token && token !== "null" && token !== "undefined";
   const isManager = role === "manager";
@@ -41,28 +42,33 @@ const Nav = () => {
           </NavLink>
         </li>
 
-        {/* These links should only appear after login */}
+        {/* Employee Access Dropdown */}
         {isLoggedIn && (
-          <li>
-            <NavLink to="/crud-cars" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              Edit Cars
-            </NavLink>
-          </li>
-        )}
-
-        {isLoggedIn && (
-          <li>
-            <NavLink to="/messages" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              View Messages
-            </NavLink>
-          </li>
-        )}
-
-        {isLoggedIn && isManager && (
-          <li>
-            <NavLink to="/crud-employees" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
-              Edit Employees
-            </NavLink>
+          <li className="dropdown">
+            <button className="dropdown-toggle" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+              Employee Access ▼
+            </button>
+            {isDropdownOpen && (
+              <ul className="dropdown-menu">
+                <li>
+                  <NavLink to="/crud-cars" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+                    Edit Cars
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink to="/messages" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+                    View Messages
+                  </NavLink>
+                </li>
+                {isManager && (
+                  <li>
+                    <NavLink to="/crud-employees" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+                      Edit Employees
+                    </NavLink>
+                  </li>
+                )}
+              </ul>
+            )}
           </li>
         )}
       </ul>
