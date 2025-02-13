@@ -43,14 +43,17 @@ app.get("*", (_req, res) => {
 // Start the server
 
 sequelize.sync({force: true}).then(() => {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server is listening on port ${PORT}`);
-  });
-}); 
-
 // These run the seeds
 seedCars();
 addEmployees();
 seedMessages();
+
+
+  app.listen(PORT, () => {
+    console.log(`🚀 Server is listening on port ${PORT}`);
+  });
+}) .catch((error) => {
+  console.error("Error syncing the database:", error);
+});
 
 export default app;
