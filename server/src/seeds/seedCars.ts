@@ -5,7 +5,7 @@ export const seedCars = async () => {
   try {
     console.log("Seeding cars...");
     // await sequelize.sync({ force: true });
-    sequelize.sync({ alter: true });
+    // sequelize.sync({ alter: true });
     //  to reset the database 
     // This will run into a problem on the first run, and maybe even once restarting the server after that...
     // Alternatively, open up postgress manually and delete the table there
