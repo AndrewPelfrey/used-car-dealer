@@ -28,14 +28,10 @@ app.use("/api", messageRoutes);
 app.use("/api", carsRouter); // Car search API
 app.use('/api', employeeRoutes);
 
-// These run the seeds
-seedCars();
-addEmployees();
-seedMessages();
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
-app.use(express.static('../../client/dist'));
+app.use(express.static(clientBuildPath));
 
 
 // Serve React app for any unknown routes (for frontend routing)
@@ -45,10 +41,18 @@ app.get("*", (_req, res) => {
 
 // Start the server
 
-sequelize.sync({force: false}).then(() => {
+sequelize.sync({force: true}).then(() => {
+// These run the seeds
+seedCars();
+addEmployees();
+seedMessages();
+
+
   app.listen(PORT, () => {
     console.log(`🚀 Server is listening on port ${PORT}`);
   });
-}); 
+}) .catch((error) => {
+  console.error("Error syncing the database:", error);
+});
 
 export default app;

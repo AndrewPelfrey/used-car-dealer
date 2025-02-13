@@ -1,18 +1,6 @@
 // import bcrypt from 'bcrypt';
-import { Sequelize } from 'sequelize';
+import sequelize from '../config/connections.js';
 import { UserFactory } from '../models/user.js';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const sequelize = new Sequelize({
-    dialect: 'postgres',
-    host: 'localhost',
-    username: process.env.DB_USER as string,
-  password: process.env.DB_PASSWORD as string,
-  database: process.env.DB_NAME as string,
-  logging: false,
-});
 
 const User = UserFactory(sequelize);
 
@@ -25,7 +13,8 @@ interface Employee {
 export async function addEmployees() {
     try {
         console.log('Syncing database...');
-        // await sequelize.sync({ force: true }); to reset the database. Revert afterwards.
+        // await sequelize.sync({ force: true }); 
+        // to reset the database. Revert afterwards.
         await sequelize.sync();
         const employees: Employee[] = [
             { username: 'Duncan', password: 'password', role: 'manager' },

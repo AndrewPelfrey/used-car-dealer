@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import { User } from "../models/user.js";
 
 const router = express.Router();
-
+// get
 router.get('/employees', async (_, res) => {
     try {
         const employees = await User.findAll();

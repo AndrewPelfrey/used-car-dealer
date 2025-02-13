@@ -4,7 +4,9 @@ import Car from "../models/Car.js";
 export const seedCars = async () => {
   try {
     console.log("Seeding cars...");
-    // await sequelize.sync({ force: true }); to reset the database 
+    // await sequelize.sync({ force: true });
+    // sequelize.sync({ alter: true });
+    //  to reset the database 
     // This will run into a problem on the first run, and maybe even once restarting the server after that...
     // Alternatively, open up postgress manually and delete the table there
     await sequelize.sync();
@@ -367,6 +369,6 @@ export const seedCars = async () => {
 
     console.log("✅ Car database seeded successfully!");
   } catch (error) {
-    console.error("❌ Error seeding database:", error);
+    console.error("❌ Error seeding cars:", error);
   }
 };
