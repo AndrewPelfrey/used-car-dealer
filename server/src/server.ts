@@ -29,9 +29,6 @@ app.use("/api", carsRouter); // Car search API
 app.use('/api', employeeRoutes);
 
 // These run the seeds
-seedCars();
-addEmployees();
-seedMessages();
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
@@ -50,5 +47,10 @@ sequelize.sync({force: true}).then(() => {
     console.log(`🚀 Server is listening on port ${PORT}`);
   });
 }); 
+
+// These run the seeds
+seedCars();
+addEmployees();
+seedMessages();
 
 export default app;
