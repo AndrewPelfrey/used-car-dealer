@@ -3,8 +3,8 @@ dotenv.config();
 
 import { Sequelize } from 'sequelize';
 
-const sequelize = process.env.DATABASE_URL
-? new Sequelize(process.env.DATABASE_URL)
+const sequelize = process.env.DB_URL
+? new Sequelize(process.env.DB_URL)
 : new Sequelize(
   process.env.DB_NAME as string,
   process.env.DB_USER as string, 
@@ -27,6 +27,5 @@ const sequelize = process.env.DATABASE_URL
 sequelize.authenticate()
   .then(() => console.log('Connected to the database'))
   .catch(err => console.error(' Database connection failed connection.ts:', err));
-
-  
+  // console.log(process.env.DATABASE_URL); 
 export default sequelize;

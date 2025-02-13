@@ -367,6 +367,6 @@ export const seedCars = async () => {
 
     console.log("✅ Car database seeded successfully!");
   } catch (error) {
-    console.error("❌ Error seeding database:", error);
+    console.error("❌ Error seeding cars:", error);
   }
 };
