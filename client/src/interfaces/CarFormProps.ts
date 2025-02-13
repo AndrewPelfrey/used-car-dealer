@@ -1,11 +1,31 @@
-
 export interface CarFormProps {
-    make: string;
-    setMake: React.Dispatch<React.SetStateAction<string>>;
-    model: string;
-    setModel: React.Dispatch<React.SetStateAction<string>>;
-    year: string;
-    setYear: React.Dispatch<React.SetStateAction<string>>;
-    onSearch: (e: React.FormEvent) => void;
-  }
-  
+  make: string;
+  setMake: React.Dispatch<React.SetStateAction<string>>;
+  model: string;
+  setModel: React.Dispatch<React.SetStateAction<string>>;
+  year: string;
+  setYear: React.Dispatch<React.SetStateAction<string>>;
+  mileage: string;
+  setMileage: React.Dispatch<React.SetStateAction<string>>;
+  engine: string;
+  setEngine: React.Dispatch<React.SetStateAction<string>>;
+  transmission: string;
+  setTransmission: React.Dispatch<React.SetStateAction<string>>;
+  interior_color: string;
+  setInteriorColor: React.Dispatch<React.SetStateAction<string>>;
+  exterior_color: string;
+  setExteriorColor: React.Dispatch<React.SetStateAction<string>>;
+  description: string;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
+  fuel_eco_highway: string;
+  setFuelEcoHighway: React.Dispatch<React.SetStateAction<string>>;
+  fuel_eco_city: string;
+  setFuelEcoCity: React.Dispatch<React.SetStateAction<string>>;
+  price: string;
+  setPrice: React.Dispatch<React.SetStateAction<string>>;
+  image_url_1: string;
+  setImageUrl1: React.Dispatch<React.SetStateAction<string>>;
+  image_url_2: string;
+  setImageUrl2: React.Dispatch<React.SetStateAction<string>>;
+  onSearch: (e: React.FormEvent) => void;
+}
