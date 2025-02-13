@@ -1,0 +1,117 @@
+/* Container for the entire search page */
+.car-search-container {
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #34383B;
+  }
+  
+  /* Header */
+  .car-search-container h1 {
+    text-align: center;
+    color: #5BACDC;
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+  
+  /* Form section */
+  .search-criteria form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .search-criteria label {
+    font-size: 16px;
+    color: #5BACDC;
+    width: calc(33% - 20px); /* 3 columns layout */
+  }
+  
+  .search-criteria select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+  }
+  
+  /* Button styling */
+  .search-criteria button {
+    background-color: #5BACDC;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-criteria button:hover {
+    background-color: #4d97c1;
+  }
+  
+  /* Car results section */
+  .search-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  .car-card {
+    background-color: #161C21;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: calc(33% - 20px); /* 3 cards per row */
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .car-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .car-card h2 {
+    font-size: 20px;
+    color: #5BACDC;
+    margin-top: 10px;
+  }
+  
+  .car-card p {
+    font-size: 14px;
+    color: #d9d9d9;
+    margin-top: 5px;
+  }
+  
+  .car-card .price {
+    font-size: 18px;
+    color: #5BACDC;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .search-criteria label {
+      width: 100%; /* Stack form fields vertically on smaller screens */
+    }
+  
+    .car-card {
+      width: calc(50% - 20px); /* 2 cards per row on tablets */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .car-card {
+      width: 100%; /* 1 card per row on small screens */
+    }
+  
+    .search-criteria label {
+      width: 100%;
+    }
+  }
+  
