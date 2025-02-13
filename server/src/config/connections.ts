@@ -9,11 +9,11 @@ const sequelize = process.env.DATABASE_URL
       dialectOptions: {
         ssl: {
           require: true,
-          rejectUnauthorized: false, // required for Render's secure connection
+          rejectUnauthorized: false, 
         },
       },
     })
-  : new Sequelize(
+  :new Sequelize(
       process.env.DB_NAME as string,
       process.env.DB_USER as string,
       process.env.DB_PASSWORD as string,
