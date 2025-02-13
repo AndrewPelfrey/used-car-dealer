@@ -32,7 +32,7 @@ app.use('/api', employeeRoutes);
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
-app.use(express.static('../../client/dist'));
+app.use(express.static(clientBuildPath));
 
 
 // Serve React app for any unknown routes (for frontend routing)
