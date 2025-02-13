@@ -28,7 +28,6 @@ app.use("/api", messageRoutes);
 app.use("/api", carsRouter); // Car search API
 app.use('/api', employeeRoutes);
 
-// These run the seeds
 
 // Serve React static files
 const clientBuildPath = path.resolve(__dirname, "../../client/dist");
