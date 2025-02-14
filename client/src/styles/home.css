@@ -147,3 +147,55 @@
   padding: 10px;
   font-size: 1.2rem;
 }
+
+
+@media screen and (max-width: 768px) {
+  .hero-text {
+    font-size: 1.5rem;
+  }
+
+  .inventory-button {
+    font-size: 1rem;
+  }
+
+  .vehicle-card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Mobile Screens (480px and below) */
+@media screen and (max-width: 480px) {
+  .hero {
+    padding: 30px;
+  }
+
+
+  .vehicle-card-container {
+    flex-direction: column;
+    align-items: center; 
+   }
+
+  .service-card-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .vehicle-card {
+    width: 90%; 
+    max-width: 300px; 
+  }
+
+  .service-card {
+    width: 100%;
+  }
+  .service-card img {
+    width: 95%;
+   
+  }
+
+}
