@@ -1,0 +1,68 @@
+.crud-container {
+    background-color: #34383B;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    margin: 2rem;
+    color: white;
+}
+
+.form-section {
+    margin-bottom: 20px;
+}
+
+.employee-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-field {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #161C21;
+    color: black;
+}
+
+.crud-button {
+    background-color: #5BACDC;
+    color: black;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.crud-button.edit {
+    background-color: #FFD700;
+    margin-left: 1rem;
+}
+
+.crud-button.delete {
+    background-color: #DC3545;
+}
+
+.list-section {
+    margin-top: 20px;
+}
+
+.employee-list {
+    list-style: none;
+    padding: 0;
+}
+
+.employee-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #161C21;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+}

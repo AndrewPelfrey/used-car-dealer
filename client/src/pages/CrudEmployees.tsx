@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../styles/crudEmployees.css";
 
 interface Employee {
     id: number;
@@ -89,68 +90,83 @@ const CrudEmployees = () => {
 
     if (loading) return <p>Loading Employees..</p>;
     return (
-        <>
-        <div>
-            <h3>Add Employees</h3>
-            <form onSubmit={handleAddEmployee}>
-                <input type="text"
-                placeholder="Username"
-                value={newEmployee.username}
-                onChange={(e) => setNewEmployee({ ...newEmployee, username: e.target.value })}
-                required
-                 />
-                 <input type="text"
-                 placeholder="Role"
-                 value={newEmployee.role}
-                 onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })}
-                 required
-                  />
-                  <input type="text"
-                  placeholder="Password" 
-                  value={newEmployee.password}
-                  onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })}
-                  required
-                  />
-                  <button type="submit">Add Employee</button>
-            </form>
-        </div>
-        {editEmployee && (
-            <div>
-                <h3>Edit Employee</h3>
-                <form onSubmit={handleUpdateEmployee}>
-                    <input type="text"
-                    value={editEmployee.username}
-                    onChange={(e) => setEditEmployee({ ...editEmployee, username: e.target.value })} 
-                    required
+        <div className="crud-container">
+            <div className="form-section">
+                <h3>Add Employee</h3>
+                <form onSubmit={handleAddEmployee} className="employee-form">
+                    <input
+                        type="text"
+                        className="input-field"
+                        placeholder="Username"
+                        value={newEmployee.username}
+                        onChange={(e) => setNewEmployee({ ...newEmployee, username: e.target.value })}
+                        required
                     />
-                    <input type="text"
-                    value={editEmployee.role}
-                    onChange={(e) => setEditEmployee({ ...editEmployee, role: e.target.value })}
-                    required
+                    <input
+                        type="text"
+                        className="input-field"
+                        placeholder="Role"
+                        value={newEmployee.role}
+                        onChange={(e) => setNewEmployee({ ...newEmployee, role: e.target.value })}
+                        required
                     />
-                    <input type="password"
-                    value={editEmployee.password}
-                    onChange={(e) => setEditEmployee({ ...editEmployee, password: e.target.value })}
-                    required
-                     />
-                     <button type="submit">Update Employee</button>
+                    <input
+                        type="password"
+                        className="input-field"
+                        placeholder="Password"
+                        value={newEmployee.password}
+                        onChange={(e) => setNewEmployee({ ...newEmployee, password: e.target.value })}
+                        required
+                    />
+                    <button type="submit" className="crud-button">Add Employee</button>
                 </form>
             </div>
-        )}
 
-        <div>
-            <h2>All Employees</h2>
-            <ul>
-                {employees.map((emp) => (
-                    <li key={emp.id}>
-                        {emp.username} - {emp.role} (Joined: {new Date(emp.createdAt).toLocaleDateString()})
-                        <button onClick={() => handleEditEmployee(emp.id)}>Edit</button>
-                        <button onClick={() => handleDeleteEmployee(emp.id)}>Delete</button>
-                    </li>
-                ))}
-            </ul>
+            {editEmployee && (
+                <div className="form-section">
+                    <h3>Edit Employee</h3>
+                    <form onSubmit={handleUpdateEmployee} className="employee-form">
+                        <input
+                            type="text"
+                            className="input-field"
+                            value={editEmployee.username}
+                            onChange={(e) => setEditEmployee({ ...editEmployee, username: e.target.value })}
+                            required
+                        />
+                        <input
+                            type="text"
+                            className="input-field"
+                            value={editEmployee.role}
+                            onChange={(e) => setEditEmployee({ ...editEmployee, role: e.target.value })}
+                            required
+                        />
+                        <input
+                            type="password"
+                            className="input-field"
+                            value={editEmployee.password}
+                            onChange={(e) => setEditEmployee({ ...editEmployee, password: e.target.value })}
+                            required
+                        />
+                        <button type="submit" className="crud-button">Update Employee</button>
+                    </form>
+                </div>
+            )}
+
+            <div className="list-section">
+                <h2>All Employees</h2>
+                <ul className="employee-list">
+                    {employees.map((emp) => (
+                        <li key={emp.id} className="employee-item">
+                            <span>{emp.username} - {emp.role} (Added: {new Date(emp.createdAt).toLocaleDateString()})</span>
+                            <div className="button-group">
+                                <button className="crud-button edit" onClick={() => handleEditEmployee(emp.id)}>Edit</button>
+                                <button className="crud-button delete" onClick={() => handleDeleteEmployee(emp.id)}>Delete</button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
-        </>
     );
 };
 
