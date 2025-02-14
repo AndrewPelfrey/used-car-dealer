@@ -1,7 +1,7 @@
 # Used Car Dealership Mockup
 
   ## Description
-  This is a mockup website made to emulate a used char dealership's page and it's functionality for both customers and employees.
+  This is a mockup website made to emulate a used car dealership's page and its functionality for both customers and employees.
 
 
   ## Table of Contents
