@@ -72,3 +72,50 @@
   text-decoration: underline;
   color: #161C21; /* Deep navy blue on hover */
 }
+
+
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+  }
+
+  .logo-container {
+    margin-bottom: 10px;
+  }
+
+  .logo {
+    width: 150px; 
+    height: auto;
+  }
+
+  .title-container {
+    margin-bottom: 10px;
+  }
+
+  .company-title {
+    font-size: 2rem;
+  }
+
+  .contact-info {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+/* Mobile Screens (480px and below) */
+@media screen and (max-width: 480px) {
+  .logo {
+    width: 120px;
+  }
+
+  .company-title {
+    font-size: 1.6rem;
+  }
+
+  .contact-info {
+    font-size: 0.9rem;
+  }
+}

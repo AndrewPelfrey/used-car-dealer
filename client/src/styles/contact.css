@@ -77,3 +77,45 @@
     color: gray;
     margin-top: 4px;
   }
+
+  @media screen and (max-width: 480px) {
+    .contact-form-container {
+      width: 90%;
+      padding: 15px;
+      margin-top: 30px !important;
+    }
+  
+    h1 {
+      font-size: 1.5rem;
+    }
+  
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      padding: 8px;  
+      font-size: 0.85rem;
+      width: 90%;
+    }
+  
+    .char-count {
+      font-size: 0.8rem;
+      text-align: right;
+      color: #666;
+    }
+  }
+  
+  .contact-form button {
+    width: 100%;
+    padding: 10px;
+    background: #5BACDC;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .contact-form button:hover {
+    background: #468bb0;
+  }

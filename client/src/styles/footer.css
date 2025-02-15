@@ -43,21 +43,60 @@
 
 /* Hover effect for links */
 .footer-link:hover {
-  color: #5BACDC; /* Change color to light blue on hover */
+  color: #5BACDC; 
 }
 
-/* Social media links */
+
 .social-link {
   margin: 0 1rem;
 }
 
 .social-logo {
-  width: 30px; /* Adjust logo size */
-  height: 30px; /* Adjust logo size */
-  transition: opacity 0.3s ease; /* Smooth fade effect on hover */
+  width: 30px; 
+  height: 30px; 
+  transition: opacity 0.3s ease; 
 }
 
-/* Social media hover effect */
+
 .social-link:hover .social-logo {
-  opacity: 0.7; /* Slight fade effect on hover */
+  opacity: 0.7; 
+}
+
+
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem; 
+  }
+
+  
+  .footer-left, 
+  .footer-center, 
+  .footer-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+
+  
+  .footer-link {
+    margin: 5px 0;
+    font-size: 0.9rem; 
+  }
+
+  
+  .footer-center {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .social-icon {
+    width: 40px; 
+    height: 40px;
+    margin: 5px;
+  }
 }

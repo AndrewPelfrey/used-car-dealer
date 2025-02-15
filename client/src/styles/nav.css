@@ -86,3 +86,78 @@
   color: #161C21;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 768px) {
+  .nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 3rem;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background-color: transparent;
+  }
+
+  .dropdown-menu .nav-link {
+    padding: 8px 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-link {
+    font-size: 1.2rem;
+    padding: 8px 12px;
+    display: block;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background-color: transparent;
+    width: auto;
+    box-shadow: none;
+  }
+
+  .dropdown-menu .nav-link {
+    padding: 6px 10px;
+    font-size: 1rem;
+  }
+}
+
+/* Even smaller screens (480px and below) */
+@media screen and (max-width: 480px) {
+  .nav-container {
+    padding: 0.5rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 6px;
+  }
+
+  .dropdown-toggle {
+    font-size: 1rem;
+  }
+
+  .dropdown-menu .nav-link {
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+}
